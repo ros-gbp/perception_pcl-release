@@ -1,0 +1,13 @@
+Source: ros-groovy-pcl-ros
+Section: misc
+Priority: extra
+Maintainer: Julius Kammerl <jkammerl@willowgarage.com>
+Build-Depends: debhelper (>= 7.0.50~), ros-groovy-common-msgs,ros-groovy-roscpp,ros-groovy-catkin,ros-groovy-tf,ros-groovy-pcl,libeigen3-dev,ros-groovy-geometry,ros-groovy-sensor-msgs
+Homepage: http://ros.org/wiki/perception_pcl
+Standards-Version: 3.9.2
+
+Package: ros-groovy-pcl-ros
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-groovy-common-msgs,ros-groovy-roscpp,ros-groovy-geometry,ros-groovy-tf,ros-groovy-pcl,libeigen3-dev,ros-groovy-sensor-msgs
+Description: PCL (Point Cloud Library) ROS interface stack. PCL-ROS is the preferred bridge for 3D applications involving n-D Point Clouds and 3D geometry processing in ROS.
+
