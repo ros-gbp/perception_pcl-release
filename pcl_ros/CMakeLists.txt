@@ -29,7 +29,8 @@ include_directories(include cfg/cpp)
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES pcl_ros_tf pcl_ros_io pcl_ros_filters
-  DEPENDS Eigen PCL roscpp sensor_msgs tf sensor_msgs std_msgs 
+  CATKIN_DEPENDS roscpp sensor_msgs tf sensor_msgs std_msgs
+  DEPENDS Eigen PCL 
 )
 
 # ---[ Point Cloud Library - Transforms
@@ -89,12 +90,13 @@ install(DIRECTORY include/${PROJECT_NAME}/
         DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 )
 
-install(TARGETS pcl_ros_tf pcl_ros_io pcl_ros_filters
+install(TARGETS pcl_ros_tf pcl_ros_io pcl_ros_filters pcd_to_pointcloud pointcloud_to_pcd bag_to_pcd convert_pcd_to_image convert_pointcloud_to_image
         RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
         ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
         LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 )
 
+# these target locations are deprecated and will be dropped in Hydro!
 install(TARGETS pcd_to_pointcloud pointcloud_to_pcd bag_to_pcd convert_pcd_to_image convert_pointcloud_to_image
   DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION})
 
