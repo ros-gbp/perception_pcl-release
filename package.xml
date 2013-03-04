@@ -1,6 +1,6 @@
 <package>
   <name>pcl_ros</name>
-  <version>1.0.25</version>
+  <version>1.0.29</version>
   <description>
 <p>
   PCL (Point Cloud Library) ROS interface stack. PCL-ROS is the preferred
@@ -40,7 +40,7 @@
   <run_depend>tf</run_depend>
   
   <export>
-     <rviz plugin="${prefix}/pcl_nodelets.xml"/>
+     <nodelet plugin="${prefix}/pcl_nodelets.xml"/>
   </export>
           
 </package>

@@ -1,3 +1,3 @@
 [git-buildpackage]
-upstream-branch=release/pcl_ros/1.0.25
+upstream-branch=@(release_tag)
 upstream-tree=branch
