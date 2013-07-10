@@ -40,7 +40,7 @@
 
 // PCL includes
 #include <pcl/features/feature.h>
-#include <pcl/PointIndices.h>
+#include <pcl_msgs/PointIndices.h>
 
 #include "pcl_ros/pcl_nodelet.h"
 #include <message_filters/pass_through.h>
@@ -48,6 +48,9 @@
 // Dynamic reconfigure
 #include <dynamic_reconfigure/server.h>
 #include "pcl_ros/FeatureConfig.h"
+
+// PCL conversions
+#include <pcl_conversions/pcl_conversions.h>
 
 namespace pcl_ros
 {
@@ -147,7 +150,7 @@ namespace pcl_ros
       input_callback (const PointCloudInConstPtr &input)
       {
         PointIndices indices;
-        indices.header.stamp = input->header.stamp;
+        indices.header.stamp = pcl_conversions::fromPCL(input->header).stamp;
         PointCloudIn cloud;
         cloud.header.stamp = input->header.stamp;
         nf_pc_.add (cloud.makeShared ());
