@@ -41,8 +41,6 @@
 #include <pcl/io/io.h>
 #include "pcl_ros/io/concatenate_fields.h"
 
-#include <pcl_conversions/pcl_conversions.h>
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void
 pcl_ros::PointCloudConcatenateFieldsSynchronizer::onInit ()

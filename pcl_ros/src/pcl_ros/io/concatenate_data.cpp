@@ -40,8 +40,6 @@
 #include "pcl_ros/transforms.h"
 #include "pcl_ros/io/concatenate_data.h"
 
-#include <pcl_conversions/pcl_conversions.h>
-
 //////////////////////////////////////////////////////////////////////////////////////////////
 void
 pcl_ros::PointCloudConcatenateDataSynchronizer::onInit ()

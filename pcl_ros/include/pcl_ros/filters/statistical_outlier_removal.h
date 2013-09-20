@@ -58,7 +58,7 @@ namespace pcl_ros
     * \note setFilterFieldName (), setFilterLimits (), and setFilterLimitNegative () are ignored.
     * \author Radu Bogdan Rusu
     */
-  class StatisticalOutlierRemoval : public Filter
+  class StatisticalOutlierRemoval : public Filter                                    
   {
     protected:
       /** \brief Pointer to a dynamic reconfigure service. */
@@ -74,13 +74,9 @@ namespace pcl_ros
               PointCloud2 &output)
       {
         boost::mutex::scoped_lock lock (mutex_);
-        pcl::PCLPointCloud2::Ptr pcl_input(new pcl::PCLPointCloud2);
-        pcl_conversions::toPCL(*(input), *(pcl_input));
-        impl_.setInputCloud (pcl_input);
+        impl_.setInputCloud (input);
         impl_.setIndices (indices);
-        pcl::PCLPointCloud2 pcl_output;
-        impl_.filter (pcl_output);
-        pcl_conversions::moveFromPCL(pcl_output, output);
+        impl_.filter (output);
       }
 
       /** \brief Child initialization routine.
@@ -97,7 +93,7 @@ namespace pcl_ros
 
     private:
       /** \brief The PCL filter implementation used. */
-      pcl::StatisticalOutlierRemoval<pcl::PCLPointCloud2> impl_;
+      pcl::StatisticalOutlierRemoval<sensor_msgs::PointCloud2> impl_;
     public:
       EIGEN_MAKE_ALIGNED_OPERATOR_NEW
   };

@@ -61,13 +61,9 @@ namespace pcl_ros
       filter (const PointCloud2::ConstPtr &input, const IndicesPtr &indices, 
               PointCloud2 &output)
       {
-        pcl::PCLPointCloud2::Ptr pcl_input(new pcl::PCLPointCloud2);
-        pcl_conversions::toPCL (*(input), *(pcl_input));
-        impl_.setInputCloud (pcl_input);
+        impl_.setInputCloud (input);
         impl_.setIndices (indices);
-        pcl::PCLPointCloud2 pcl_output;
-        impl_.filter (pcl_output);
-        pcl_conversions::moveFromPCL(pcl_output, output);
+        impl_.filter (output);
       }
 
       /** \brief Child initialization routine.
@@ -77,7 +73,7 @@ namespace pcl_ros
 
     private:
       /** \brief The PCL filter implementation used. */
-      pcl::RadiusOutlierRemoval<pcl::PCLPointCloud2> impl_;
+      pcl::RadiusOutlierRemoval<sensor_msgs::PointCloud2> impl_;
     public:
       EIGEN_MAKE_ALIGNED_OPERATOR_NEW
   };

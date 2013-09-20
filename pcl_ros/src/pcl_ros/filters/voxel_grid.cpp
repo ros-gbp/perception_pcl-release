@@ -58,13 +58,10 @@ pcl_ros::VoxelGrid::filter (const PointCloud2::ConstPtr &input,
                             PointCloud2 &output)
 {
   boost::mutex::scoped_lock lock (mutex_);
-  pcl::PCLPointCloud2::Ptr pcl_input(new pcl::PCLPointCloud2);
-  pcl_conversions::toPCL (*(input), *(pcl_input));
-  impl_.setInputCloud (pcl_input);
+
+  impl_.setInputCloud (input);
   impl_.setIndices (indices);
-  pcl::PCLPointCloud2 pcl_output;
-  impl_.filter (pcl_output);
-  pcl_conversions::moveFromPCL(pcl_output, output);
+  impl_.filter (output);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////

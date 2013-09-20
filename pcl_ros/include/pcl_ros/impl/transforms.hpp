@@ -37,11 +37,7 @@
 #ifndef pcl_ros_IMPL_TRANSFORMS_H_
 #define pcl_ros_IMPL_TRANSFORMS_H_
 
-#include <pcl_conversions/pcl_conversions.h>
 #include "pcl_ros/transforms.h"
-
-using pcl_conversions::fromPCL;
-using pcl_conversions::toPCL;
 
 namespace pcl_ros
 {
@@ -103,7 +99,7 @@ transformPointCloudWithNormals (const std::string &target_frame,
   tf::StampedTransform transform;
   try
   {
-    tf_listener.lookupTransform (target_frame, cloud_in.header.frame_id, fromPCL(cloud_in.header).stamp, transform);
+    tf_listener.lookupTransform (target_frame, cloud_in.header.frame_id, cloud_in.header.stamp, transform);
   }
   catch (tf::LookupException &e)
   {
@@ -137,7 +133,7 @@ transformPointCloud (const std::string &target_frame,
   tf::StampedTransform transform;
   try
   {
-    tf_listener.lookupTransform (target_frame, cloud_in.header.frame_id, fromPCL(cloud_in.header).stamp, transform);
+    tf_listener.lookupTransform (target_frame, cloud_in.header.frame_id, cloud_in.header.stamp, transform);
   }
   catch (tf::LookupException &e)
   {
@@ -166,7 +162,7 @@ transformPointCloud (const std::string &target_frame,
   tf::StampedTransform transform;
   try
   {
-    tf_listener.lookupTransform (target_frame, target_time, cloud_in.header.frame_id, fromPCL(cloud_in.header).stamp, fixed_frame, transform);
+    tf_listener.lookupTransform (target_frame, target_time, cloud_in.header.frame_id, cloud_in.header.stamp, fixed_frame, transform);
   }
   catch (tf::LookupException &e)
   {
@@ -181,9 +177,7 @@ transformPointCloud (const std::string &target_frame,
 
   transformPointCloud (cloud_in, cloud_out, transform);
   cloud_out.header.frame_id = target_frame;
-  std_msgs::Header header;
-  header.stamp = target_time;
-  cloud_out.header = toPCL(header);
+  cloud_out.header.stamp = target_time;
   return (true);
 }
 
@@ -199,7 +193,7 @@ transformPointCloudWithNormals (const std::string &target_frame,
   tf::StampedTransform transform;
   try
   {
-    tf_listener.lookupTransform (target_frame, target_time, cloud_in.header.frame_id, fromPCL(cloud_in.header).stamp, fixed_frame, transform);
+    tf_listener.lookupTransform (target_frame, target_time, cloud_in.header.frame_id, cloud_in.header.stamp, fixed_frame, transform);
   }
   catch (tf::LookupException &e)
   {
@@ -214,9 +208,7 @@ transformPointCloudWithNormals (const std::string &target_frame,
 
   transformPointCloudWithNormals (cloud_in, cloud_out, transform);
   cloud_out.header.frame_id = target_frame;
-  std_msgs::Header header;
-  header.stamp = target_time;
-  cloud_out.header = toPCL(header);
+  cloud_out.header.stamp = target_time;
   return (true);
 }
 
