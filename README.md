@@ -1,3 +1,24 @@
+## perception_pcl - 1.1.7-0
+
+User `tfoote@BigFoote` released the packages in the `perception_pcl` repository by running `/usr/bin/bloom-release perception_pcl -t hydro -r hydro` on `Fri, 20 Sep 2013 18:38:44 -0000`
+
+These packages were released:
+- `pcl_ros`
+- `perception_pcl`
+
+Version of package(s) in repository `perception_pcl`:
+- rosdistro version: `1.1.6-0`
+- old version: `1.1.6-0`
+- new version: `1.1.7-0`
+
+Versions of tools used:
+- bloom version: `0.4.4`
+- catkin_pkg version: `0.1.20`
+- rosdep version: `0.10.22`
+- rosdistro version: `0.2.14`
+- vcstools version: `0.1.31`
+
+
 ## perception_pcl - 1.0.36-0
 
 User `tfoote@BigFoote` released the packages in the `perception_pcl` repository by running `/usr/bin/bloom-release perception_pcl -t groovy -r groovy --edit` on `Fri, 20 Sep 2013 18:02:28 -0000`
