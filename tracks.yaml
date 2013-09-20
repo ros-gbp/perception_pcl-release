@@ -27,7 +27,7 @@ tracks:
     - git-bloom-generate -y rosdebian --prefix release/:{ros_distro} :{ros_distro}
       -i :{release_inc}
     devel_branch: groovy-devel
-    last_version: 1.0.29
+    last_version: 1.0.36
     name: upstream
     patches: null
     release_inc: '0'
