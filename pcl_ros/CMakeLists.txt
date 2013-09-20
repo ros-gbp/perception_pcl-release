@@ -111,6 +111,7 @@ add_library(pcl_ros_features
   src/pcl_ros/features/vfh.cpp
 )
 target_link_libraries (pcl_ros_features ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+add_dependencies(pcl_ros_features ${PROJECT_NAME}_gencfg)
 class_loader_hide_library_symbols(pcl_ros_features)
 
 
@@ -137,6 +138,7 @@ add_library (pcl_ros_segmentation
   src/pcl_ros/segmentation/segmentation.cpp
 )
 target_link_libraries(pcl_ros_segmentation pcl_segmentation pcl_ros_tf ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+add_dependencies(pcl_ros_segmentation ${PROJECT_NAME}_gencfg)
 class_loader_hide_library_symbols(pcl_ros_segmentation)
 
 ## Declare the pcl_ros_surface library
@@ -147,6 +149,7 @@ add_library (pcl_ros_surface
   src/pcl_ros/surface/moving_least_squares.cpp
 )
 target_link_libraries(pcl_ros_surface ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+add_dependencies(pcl_ros_surface ${PROJECT_NAME}_gencfg)
 class_loader_hide_library_symbols(pcl_ros_surface)
 
 ## Tools
