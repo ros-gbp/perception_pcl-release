@@ -1,3 +1,24 @@
+## perception_pcl (indigo) - 1.2.0-0
+
+User `lucid@irb` released the packages in the `perception_pcl` repository into the `indigo` distro by running `/usr/bin/bloom-release perception_pcl --track indigo --rosdistro indigo --new-track` on `Thu, 10 Apr 2014 03:07:28 -0000`
+
+These packages were released:
+- `pcl_ros`
+- `perception_pcl`
+
+Version of package(s) in repository `perception_pcl`:
+- rosdistro version: `null`
+- old version: `null`
+- new version: `1.2.0-0`
+
+Versions of tools used:
+- bloom version: `0.5.2`
+- catkin_pkg version: `0.1.27`
+- rosdep version: `0.10.25`
+- rosdistro version: `0.3.4`
+- vcstools version: `0.1.33`
+
+
 ## perception_pcl - 1.1.7-0
 
 User `tfoote@BigFoote` released the packages in the `perception_pcl` repository by running `/usr/bin/bloom-release perception_pcl -t hydro -r hydro` on `Fri, 20 Sep 2013 18:38:44 -0000`
