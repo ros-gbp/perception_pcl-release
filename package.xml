@@ -1,6 +1,6 @@
 <package>
   <name>pcl_ros</name>
-  <version>1.1.7</version>
+  <version>1.1.8</version>
   <description>
 
   PCL (Point Cloud Library) ROS interface stack. PCL-ROS is the preferred
@@ -8,11 +8,19 @@
   processing in ROS.
 
   </description>
+  
   <author>Open Perception</author>
-  <maintainer email="william@osrfoundation.org">William Woodall</maintainer>
-  <maintainer email="julius@kammerl.de">Julius Kammerl</maintainer>
+
+  <author email="jkammerl@willowgarage.com">Julius Kammerl</author>
+  <author email="william@osrfoundation.org">William Woodall</author>
+  <maintainer email="paul@bovbel.com">Paul Bovbel</maintainer>
+  <maintainer email="bill@neautomation.com">Bill Morris</maintainer>
+
   <license>BSD</license>
-  <url>http://ros.org/wiki/perception_pcl</url>
+  
+  <url type="website">http://ros.org/wiki/perception_pcl</url>
+  <url type="bugtracker">https://github.com/ros-perception/perception_pcl/issues</url>
+  <url type="repository">https://github.com/ros-perception/perception_pcl</url>
 
   <buildtool_depend>catkin</buildtool_depend>
 
@@ -36,6 +44,7 @@
   <run_depend>nodelet</run_depend>
   <run_depend>nodelet_topic_tools</run_depend>
   <run_depend>libpcl-all</run_depend>
+  <run_depend>libpcl-all-dev</run_depend>
   <run_depend>pcl_conversions</run_depend>
   <run_depend>pcl_msgs</run_depend>
   <run_depend>pluginlib</run_depend>
