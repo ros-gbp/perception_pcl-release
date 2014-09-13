@@ -1,3 +1,26 @@
+## perception_pcl (hydro) - 1.1.9-1
+
+The packages in the `perception_pcl` repository were released into the `hydro` distro by running `/usr/local/bin/bloom-release perception_pcl --track hydro --rosdistro hydro -d` on `Sat, 13 Sep 2014 21:33:10 -0000`
+
+These packages were released:
+- `pcl_ros`
+- `perception_pcl`
+
+Version of package(s) in repository `perception_pcl`:
+- upstream repository: https://github.com/ros-perception/perception_pcl.git
+- release repository: https://github.com/ros-gbp/perception_pcl-release.git
+- rosdistro version: `1.1.8-0`
+- old version: `1.1.9-0`
+- new version: `1.1.9-1`
+
+Versions of tools used:
+- bloom version: `0.5.11`
+- catkin_pkg version: `0.2.4`
+- rosdep version: `0.10.30`
+- rosdistro version: `0.3.5`
+- vcstools version: `0.1.35`
+
+
 ## perception_pcl (hydro) - 1.1.9-0
 
 The packages in the `perception_pcl` repository were released into the `hydro` distro by running `/usr/local/bin/bloom-release perception_pcl --track hydro --rosdistro hydro` on `Sat, 13 Sep 2014 21:30:04 -0000`
