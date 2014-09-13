@@ -1,0 +1,206 @@
+ros-hydro-perception-pcl (1.1.9-1raring) raring; urgency=high
+
+
+
+ -- Paul Bovbel <paul@bovbel.com>  Sat, 13 Sep 2014 00:00:00 -0000
+
+ros-hydro-perception-pcl (1.1.8-1raring) raring; urgency=high
+
+
+
+ -- Paul Bovbel <paul@bovbel.com>  Thu, 10 Apr 2014 00:00:00 -0000
+
+ros-hydro-perception-pcl (1.1.7-1raring) raring; urgency=high
+
+
+
+ -- William Woodall <william@osrfoundation.org>  Fri, 20 Sep 2013 00:00:00 -0000
+
+ros-hydro-perception-pcl (1.1.6-1raring) raring; urgency=high
+
+
+
+ -- William Woodall <william@osrfoundation.org>  Fri, 20 Sep 2013 00:00:00 -0000
+
+ros-hydro-perception-pcl (1.1.5-1raring) raring; urgency=high
+
+  * Updated package.xml's to use new libpcl-all rosdep rules
+
+ -- William Woodall <william@osrfoundation.org>  Tue, 27 Aug 2013 00:00:00 -0000
+
+ros-hydro-perception-pcl (1.1.4-1raring) raring; urgency=high
+
+
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Tue, 23 Jul 2013 00:00:00 -0000
+
+ros-hydro-perception-pcl (1.1.2-1raring) raring; urgency=high
+
+
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Fri, 19 Jul 2013 00:00:00 -0000
+
+ros-hydro-perception-pcl (1.1.1-1raring) raring; urgency=high
+
+  * No changes
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Wed, 10 Jul 2013 00:00:00 -0000
+
+ros-hydro-perception-pcl (1.1.0-1raring) raring; urgency=high
+
+  * No changes
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Tue, 09 Jul 2013 00:00:00 -0000
+
+ros-hydro-perception-pcl (1.0.34-1raring) raring; urgency=high
+
+  * No changes
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Tue, 21 May 2013 00:00:00 -0000
+
+ros-hydro-perception-pcl (1.0.33-1raring) raring; urgency=high
+
+  * No changes
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Mon, 20 May 2013 00:00:00 -0000
+
+ros-hydro-perception-pcl (1.0.32-1raring) raring; urgency=high
+
+  * No changes
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Fri, 17 May 2013 00:00:00 -0000
+
+ros-hydro-perception-pcl (1.0.31-1raring) raring; urgency=high
+
+  * No changes
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Mon, 22 Apr 2013 11:58:00 -0000
+
+ros-hydro-perception-pcl (1.0.30-1raring) raring; urgency=high
+
+  * adding CMakeLists.txt file for metapackage
+  * adding buildtool_depend to meta package
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Mon, 22 Apr 2013 11:47:00 -0000
+
+ros-hydro-perception-pcl (1.0.29-1raring) raring; urgency=high
+
+  * No changes
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Mon, 04 Mar 2013 00:00:00 -0000
+
+ros-hydro-perception-pcl (1.0.28-1raring) raring; urgency=high
+
+  * No changes
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Tue, 05 Feb 2013 12:29:00 -0000
+
+ros-hydro-perception-pcl (1.0.27-1raring) raring; urgency=high
+
+  * No changes
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Tue, 05 Feb 2013 12:10:00 -0000
+
+ros-hydro-perception-pcl (1.0.26-1raring) raring; urgency=high
+
+  * removing build_tool dependency from package.xml
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Thu, 17 Jan 2013 00:00:00 -0000
+
+ros-hydro-perception-pcl (1.0.25-1raring) raring; urgency=high
+
+  * No changes
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Tue, 01 Jan 2013 00:00:00 -0000
+
+ros-hydro-perception-pcl (1.0.24-1raring) raring; urgency=high
+
+  * No changes
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Fri, 21 Dec 2012 00:00:00 -0000
+
+ros-hydro-perception-pcl (1.0.23-1raring) raring; urgency=high
+
+  * No changes
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Wed, 19 Dec 2012 16:52:00 -0000
+
+ros-hydro-perception-pcl (1.0.22-1raring) raring; urgency=high
+
+  * No changes
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Wed, 19 Dec 2012 15:22:00 -0000
+
+ros-hydro-perception-pcl (1.0.21-1raring) raring; urgency=high
+
+  * No changes
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Tue, 18 Dec 2012 17:42:00 -0000
+
+ros-hydro-perception-pcl (1.0.20-1raring) raring; urgency=high
+
+  * No changes
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Tue, 18 Dec 2012 14:21:00 -0000
+
+ros-hydro-perception-pcl (1.0.19-1raring) raring; urgency=high
+
+  * No changes
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Mon, 17 Dec 2012 21:47:00 -0000
+
+ros-hydro-perception-pcl (1.0.18-1raring) raring; urgency=high
+
+  * Updated for new <buildtool_depend>catkin<...> catkin rule
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Mon, 17 Dec 2012 21:17:00 -0000
+
+ros-hydro-perception-pcl (1.0.17-1raring) raring; urgency=high
+
+  * remove useless tags
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Fri, 26 Oct 2012 09:28:00 -0000
+
+ros-hydro-perception-pcl (1.0.16-1raring) raring; urgency=high
+
+  * No changes
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Fri, 26 Oct 2012 08:53:00 -0000
+
+ros-hydro-perception-pcl (1.0.15-1raring) raring; urgency=high
+
+  * No changes
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Wed, 24 Oct 2012 00:00:00 -0000
+
+ros-hydro-perception-pcl (1.0.14-1raring) raring; urgency=high
+
+  * No changes
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Tue, 23 Oct 2012 00:00:00 -0000
+
+ros-hydro-perception-pcl (1.0.13-1raring) raring; urgency=high
+
+  * No changes
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Thu, 11 Oct 2012 17:46:00 -0000
+
+ros-hydro-perception-pcl (1.0.12-1raring) raring; urgency=high
+
+  * make sure perception_pcl is a meta package
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Thu, 11 Oct 2012 17:25:00 -0000
+
+ros-hydro-perception-pcl (1.0.11-1raring) raring; urgency=high
+
+  * No changes
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Wed, 10 Oct 2012 00:00:00 -0000
+
+ros-hydro-perception-pcl (1.0.10-1raring) raring; urgency=high
+
+  * comply to the new catkin API
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Thu, 04 Oct 2012 00:00:00 -0000
+
+
