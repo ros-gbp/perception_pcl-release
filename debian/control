@@ -1,0 +1,12 @@
+Source: ros-hydro-pointcloud-to-laserscan
+Section: misc
+Priority: extra
+Maintainer: Paul Bovbel <paul@bovbel.com>
+Build-Depends: debhelper (>= 9.0.0), libpcl-1.7-all-dev, ros-hydro-catkin, ros-hydro-dynamic-reconfigure, ros-hydro-message-filters, ros-hydro-nodelet, ros-hydro-pcl-ros, ros-hydro-roscpp, ros-hydro-sensor-msgs
+Homepage: http://ros.org/wiki/perception_pcl
+Standards-Version: 3.9.2
+
+Package: ros-hydro-pointcloud-to-laserscan
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libpcl-1.7-all-dev, ros-hydro-dynamic-reconfigure, ros-hydro-message-filters, ros-hydro-nodelet, ros-hydro-pcl-ros, ros-hydro-roscpp, ros-hydro-sensor-msgs
+Description: Converts a 3D Point Cloud into a 2D laser scan. This is useful for making devices like the Kinect appear like a laser scanner for 2D-based algorithms (e.g. laser-based SLAM).
