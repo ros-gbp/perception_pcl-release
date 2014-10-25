@@ -2,6 +2,9 @@
 Changelog for package pcl_ros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.1.10 (2014-10-25)
+-------------------
+
 1.1.9 (2014-09-13)
 ------------------
 * Created a nodelet for the CropBox filter
