@@ -1,0 +1,257 @@
+ros-hydro-pcl-ros (1.1.10-0precise) precise; urgency=high
+
+
+
+ -- Paul Bovbel <paul@bovbel.com>  Sat, 25 Oct 2014 04:00:00 -0000
+
+ros-hydro-pcl-ros (1.1.9-0precise) precise; urgency=high
+
+  * Created a nodelet for the CropBox filter
+  * Tests no longer exist
+  * add nodelet definitions to xml
+  * Contributors: Martí Morta, Paul Bovbel, Ryohei Ueda
+
+ -- Paul Bovbel <paul@bovbel.com>  Sat, 13 Sep 2014 04:00:00 -0000
+
+ros-hydro-pcl-ros (1.1.8-0precise) precise; urgency=high
+
+  * Update to support TF2
+    Fixes #46 <https://github.com/ros-perception/perception_pcl/issues/46>
+  * pcl_ros: also run_depend on libpcl-all
+  * Make pcl_ros run_depend on libpcl-all-dev
+    When downstream projects build against pcl_ros, they need the pcl headers provided by libpcl-all-dev.
+  * Contributors: Lucid One, Scott K Logan, William Woodall
+
+ -- Paul Bovbel <paul@bovbel.com>  Thu, 10 Apr 2014 04:00:00 -0000
+
+ros-hydro-pcl-ros (1.1.7-0precise) precise; urgency=high
+
+  * adding more uncaught config dependencies
+  * adding FeatureConfig dependency too
+
+ -- William Woodall <william@osrfoundation.org>  Fri, 20 Sep 2013 04:00:00 -0000
+
+ros-hydro-pcl-ros (1.1.6-0precise) precise; urgency=high
+
+  * add excplicit dependency on gencfg target
+
+ -- William Woodall <william@osrfoundation.org>  Fri, 20 Sep 2013 04:00:00 -0000
+
+ros-hydro-pcl-ros (1.1.5-0precise) precise; urgency=high
+
+  * Updated package.xml's to use new libpcl-all rosdep rules
+  * package.xml: tuned whitespaces
+    This commit removes trailing whitespaces and makes the line with the license information in the package.xml bitwise match exactly the common license information line in most ROS packages.
+    The trailing whitespaces were detected when providing a bitbake recipe in the meta-ros project (github.com/bmwcarit/meta-ros). In the recipe, the hash of the license line is declared and is used to check for changes in the license. For this recipe, it was not matching the common one.
+    A related already merged commit is https://github.com/ros/std_msgs/pull/3 and a related pending commit is https://github.com/ros-perception/pcl_msgs/pull/1.
+
+ -- William Woodall <william@osrfoundation.org>  Tue, 27 Aug 2013 04:00:00 -0000
+
+ros-hydro-pcl-ros (1.1.4-0precise) precise; urgency=high
+
+  * Fix a serialization error with point_cloud headers
+  * Initialize shared pointers before use in part of the pcl_conversions
+    Should address runtime errors reported in #29 <https://github.com/ros-perception/perception_pcl/issues/29>
+  * Changed the default bounds on filters to -1000, 1000 from -5, 5 in common.py
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Tue, 23 Jul 2013 04:00:00 -0000
+
+ros-hydro-pcl-ros (1.1.2-0precise) precise; urgency=high
+
+  * Fixed missing package exports on pcl_conversions and others
+  * Make find_package on Eigen and PCL REQUIRED
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Fri, 19 Jul 2013 04:00:00 -0000
+
+ros-hydro-pcl-ros (1.1.1-0precise) precise; urgency=high
+
+  * Add missing EIGEN define which caused failures on the farm
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Wed, 10 Jul 2013 04:00:00 -0000
+
+ros-hydro-pcl-ros (1.1.0-0precise) precise; urgency=high
+
+  * Add missing include in one of the installed headers
+  * Refactors to use pcl-1.7
+  * Use the PointIndices from pcl_msgs
+  * Experimental changes to point_cloud.h
+  * Fixes from converting from pcl-1.7, incomplete
+  * Depend on pcl_conversions and pcl_msgs
+  * bag_to_pcd: check return code of transformPointCloud()
+    This fixes a bug where bag_to_pcd segfaults because of an ignored
+    tf::ExtrapolationException.
+  * Changed #include type to lib
+  * Changed some #include types to lib
+  * removed a whitespace
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Tue, 09 Jul 2013 04:00:00 -0000
+
+ros-hydro-pcl-ros (1.0.34-0precise) precise; urgency=high
+
+  * fixing catkin python imports
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Tue, 21 May 2013 04:00:00 -0000
+
+ros-hydro-pcl-ros (1.0.33-0precise) precise; urgency=high
+
+  * Fixing catkin python imports
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Mon, 20 May 2013 04:00:00 -0000
+
+ros-hydro-pcl-ros (1.0.32-0precise) precise; urgency=high
+
+  * Merge pull request #11 <https://github.com/ros-perception/perception_pcl/issues/11> from k-okada/groovy-devel
+    revert removed directories
+  * fix to compileable
+  * copy features/segmentation/surface from fuerte-devel
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Fri, 17 May 2013 04:00:00 -0000
+
+ros-hydro-pcl-ros (1.0.31-0precise) precise; urgency=high
+
+  * No changes
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Mon, 22 Apr 2013 15:58:00 -0000
+
+ros-hydro-pcl-ros (1.0.30-0precise) precise; urgency=high
+
+  * deprecating bin install targets
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Mon, 22 Apr 2013 15:47:00 -0000
+
+ros-hydro-pcl-ros (1.0.29-0precise) precise; urgency=high
+
+  * Fixes #7 <https://github.com/ros-perception/perception_pcl/issues/7>
+  * now also works without specifying publishing interval like described in the wiki.
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Mon, 04 Mar 2013 05:00:00 -0000
+
+ros-hydro-pcl-ros (1.0.28-0precise) precise; urgency=high
+
+  * reenabling deprecated install targets - comment added
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Tue, 05 Feb 2013 17:29:00 -0000
+
+ros-hydro-pcl-ros (1.0.27-0precise) precise; urgency=high
+
+  * Update pcl_ros/package.xml
+  * Fixing target install directory for pcl tools
+  * update pluginlib macro
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Tue, 05 Feb 2013 17:10:00 -0000
+
+ros-hydro-pcl-ros (1.0.26-0precise) precise; urgency=high
+
+  * fixing catkin export
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Thu, 17 Jan 2013 05:00:00 -0000
+
+ros-hydro-pcl-ros (1.0.25-0precise) precise; urgency=high
+
+  * fixes #1 <https://github.com/ros-perception/perception_pcl/issues/1>
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Tue, 01 Jan 2013 05:00:00 -0000
+
+ros-hydro-pcl-ros (1.0.24-0precise) precise; urgency=high
+
+  * remove obsolete roslib import
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Fri, 21 Dec 2012 05:00:00 -0000
+
+ros-hydro-pcl-ros (1.0.23-0precise) precise; urgency=high
+
+  * clean up shared parameters
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Wed, 19 Dec 2012 21:52:00 -0000
+
+ros-hydro-pcl-ros (1.0.22-0precise) precise; urgency=high
+
+  * fix dyn reconf files
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Wed, 19 Dec 2012 20:22:00 -0000
+
+ros-hydro-pcl-ros (1.0.21-0precise) precise; urgency=high
+
+  * fixing catkin_package debs
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Tue, 18 Dec 2012 22:42:00 -0000
+
+ros-hydro-pcl-ros (1.0.20-0precise) precise; urgency=high
+
+  * adding catkin_project dependencies
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Tue, 18 Dec 2012 19:21:00 -0000
+
+ros-hydro-pcl-ros (1.0.19-0precise) precise; urgency=high
+
+  * adding nodelet_topic_tools dependency
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Tue, 18 Dec 2012 02:47:00 -0000
+
+ros-hydro-pcl-ros (1.0.18-0precise) precise; urgency=high
+
+  * adding pluginlib dependency
+  * adding nodelet dependencies
+  * CMake install fixes
+  * migrating nodelets and tools from fuerte release to pcl_ros
+  * Updated for new <buildtool_depend>catkin<...> catkin rule
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Tue, 18 Dec 2012 02:17:00 -0000
+
+ros-hydro-pcl-ros (1.0.17-0precise) precise; urgency=high
+
+  * remove useless tags
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Fri, 26 Oct 2012 13:28:00 -0000
+
+ros-hydro-pcl-ros (1.0.16-0precise) precise; urgency=high
+
+  * no need to depend on a meta-package
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Fri, 26 Oct 2012 12:53:00 -0000
+
+ros-hydro-pcl-ros (1.0.15-0precise) precise; urgency=high
+
+  * do not generrate messages automatically
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Wed, 24 Oct 2012 04:00:00 -0000
+
+ros-hydro-pcl-ros (1.0.14-0precise) precise; urgency=high
+
+  * bring back the PCL msgs
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Tue, 23 Oct 2012 04:00:00 -0000
+
+ros-hydro-pcl-ros (1.0.13-0precise) precise; urgency=high
+
+  * install library to the right place
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Thu, 11 Oct 2012 21:46:00 -0000
+
+ros-hydro-pcl-ros (1.0.12-0precise) precise; urgency=high
+
+
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Thu, 11 Oct 2012 21:25:00 -0000
+
+ros-hydro-pcl-ros (1.0.11-0precise) precise; urgency=high
+
+  * fix a few dependencies
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Wed, 10 Oct 2012 04:00:00 -0000
+
+ros-hydro-pcl-ros (1.0.10-0precise) precise; urgency=high
+
+  * comply to the new catkin API
+  * fixed pcl_ros manifest
+  * added pcl exports in manifest.xml
+  * fixed rosdeb pcl in pcl_ros/manifest.xml
+  * removing common_rosdeps from manifest.xml
+  * perception_pcl restructuring in groovy branch
+  * restructuring perception_pcl in groovy branch
+  * catkinized version of perception_pcl for groovy
+  * added PCL 1.6 stack for groovy
+
+ -- Julius Kammerl <jkammerl@willowgarage.com>  Thu, 04 Oct 2012 04:00:00 -0000
+
+
