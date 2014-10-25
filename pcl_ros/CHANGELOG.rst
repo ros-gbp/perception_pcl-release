@@ -2,21 +2,17 @@
 Changelog for package pcl_ros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.1.9 (2014-09-13)
+1.2.1 (2014-09-13)
 ------------------
-* Created a nodelet for the CropBox filter
-* Tests no longer exist
-* add nodelet definitions to xml
-* Contributors: Martí Morta, Paul Bovbel, Ryohei Ueda
+* clean up merge
+* merge pull request `#60 <https://github.com/ros-perception/perception_pcl/issues/60>`_
+* Contributors: Paul Bovbel
 
-1.1.8 (2014-04-10)
+1.2.0 (2014-04-09)
 ------------------
-* Update to support TF2
-  Fixes `#46 <https://github.com/ros-perception/perception_pcl/issues/46>`_
-* pcl_ros: also run_depend on libpcl-all
-* Make pcl_ros run_depend on libpcl-all-dev
-  When downstream projects build against pcl_ros, they need the pcl headers provided by libpcl-all-dev.
-* Contributors: Lucid One, Scott K Logan, William Woodall
+* Updated maintainership
+* Fix TF2 support for bag_to_pcd `#46 <https://github.com/ros-perception/perception_pcl/issues/46>`_
+* Use cmake_modules to find eigen on indigo `#45 <https://github.com/ros-perception/perception_pcl/issues/45>`_
 
 1.1.7 (2013-09-20)
 ------------------
