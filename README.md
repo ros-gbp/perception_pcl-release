@@ -1,3 +1,27 @@
+## perception_pcl (indigo) - 1.2.3-0
+
+The packages in the `perception_pcl` repository were released into the `indigo` distro by running `/usr/bin/bloom-release perception_pcl --track indigo --rosdistro indigo` on `Sat, 10 Jan 2015 18:27:45 -0000`
+
+These packages were released:
+- `pcl_ros`
+- `perception_pcl`
+- `pointcloud_to_laserscan`
+
+Version of package(s) in repository `perception_pcl`:
+- upstream repository: https://github.com/ros-perception/perception_pcl.git
+- release repository: https://github.com/ros-gbp/perception_pcl-release.git
+- rosdistro version: `1.2.2-0`
+- old version: `1.2.2-0`
+- new version: `1.2.3-0`
+
+Versions of tools used:
+- bloom version: `0.5.16`
+- catkin_pkg version: `0.2.6`
+- rosdep version: `0.11.0`
+- rosdistro version: `0.4.0`
+- vcstools version: `0.1.36`
+
+
 ## perception_pcl (hydro) - 1.1.10-0
 
 The packages in the `perception_pcl` repository were released into the `hydro` distro by running `/usr/bin/bloom-release perception_pcl --track hydro --rosdistro hydro` on `Sat, 25 Oct 2014 17:21:00 -0000`
