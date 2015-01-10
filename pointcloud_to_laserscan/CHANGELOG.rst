@@ -2,6 +2,13 @@
 Changelog for package pointcloud_to_laserscan
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.1.11 (2015-01-10)
+-------------------
+* add launch tests
+* refactor naming and fix nodelet export
+* set default target frame to empty
+* Contributors: Paul Bovbel
+
 1.1.10 (2014-10-25)
 -------------------
 
