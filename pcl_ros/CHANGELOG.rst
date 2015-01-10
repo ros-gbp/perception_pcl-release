@@ -2,24 +2,31 @@
 Changelog for package pcl_ros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.1.10 (2014-10-25)
--------------------
-
-1.1.9 (2014-09-13)
+1.2.3 (2015-01-10)
 ------------------
-* Created a nodelet for the CropBox filter
-* Tests no longer exist
-* add nodelet definitions to xml
-* Contributors: Martí Morta, Paul Bovbel, Ryohei Ueda
+* Update common.py
+  Extended filter limits up to ±100000.0 in order to support intensity channel filtering.
+* Contributors: Dani Carbonell
 
-1.1.8 (2014-04-10)
+1.2.2 (2014-10-25)
 ------------------
-* Update to support TF2
-  Fixes `#46 <https://github.com/ros-perception/perception_pcl/issues/46>`_
-* pcl_ros: also run_depend on libpcl-all
-* Make pcl_ros run_depend on libpcl-all-dev
-  When downstream projects build against pcl_ros, they need the pcl headers provided by libpcl-all-dev.
-* Contributors: Lucid One, Scott K Logan, William Woodall
+* Adding target_frame
+  [Ability to specify frame in bag_to_pcd ](https://github.com/ros-perception/perception_pcl/issues/55)
+* Update pcl_nodelets.xml
+  Included missing closing library tag.  This was causing the pcl/Filter nodelets below the missing nodelet tag to not be exported correctly.
+* Contributors: Matt Derry, Paul Bovbel, Ruffin
+
+1.2.1 (2014-09-13)
+------------------
+* clean up merge
+* merge pull request `#60 <https://github.com/ros-perception/perception_pcl/issues/60>`_
+* Contributors: Paul Bovbel
+
+1.2.0 (2014-04-09)
+------------------
+* Updated maintainership
+* Fix TF2 support for bag_to_pcd `#46 <https://github.com/ros-perception/perception_pcl/issues/46>`_
+* Use cmake_modules to find eigen on indigo `#45 <https://github.com/ros-perception/perception_pcl/issues/45>`_
 
 1.1.7 (2013-09-20)
 ------------------
