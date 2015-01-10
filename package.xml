@@ -1,6 +1,6 @@
 <package>
   <name>perception_pcl</name>
-  <version>1.1.10</version>
+  <version>1.1.11</version>
   <description>
 
   PCL (Point Cloud Library) ROS interface stack. PCL-ROS is the preferred
@@ -25,7 +25,7 @@
   <run_depend>pcl_conversions</run_depend>
   <run_depend>pcl_msgs</run_depend>
   <run_depend>pcl_ros</run_depend>
-
+  <run_depend>pointcloud_to_laserscan</run_depend>
   <export>
     <metapackage/>
   </export>
