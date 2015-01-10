@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
     <name>pointcloud_to_laserscan</name>
-    <version>1.1.10</version>
+    <version>1.1.11</version>
     <description>Converts a 3D Point Cloud into a 2D laser scan. This is useful for making devices like the Kinect appear like a laser scanner for 2D-based algorithms (e.g. laser-based SLAM).</description>
 
     <maintainer email="paul@bovbel.com">Paul Bovbel</maintainer>
@@ -20,6 +20,7 @@
     <build_depend>nodelet</build_depend>
     <build_depend>pcl_ros</build_depend>
     <build_depend>roscpp</build_depend>
+    <build_depend>roslaunch</build_depend>
     <build_depend>sensor_msgs</build_depend>
     <run_depend>dynamic_reconfigure</run_depend>
     <run_depend>libpcl-all-dev</run_depend>
@@ -28,7 +29,9 @@
     <run_depend>pcl_ros</run_depend>
     <run_depend>roscpp</run_depend>
     <run_depend>sensor_msgs</run_depend>
+    <run_depend>openni2_launch</run_depend>
 
     <export>
+        <nodelet plugin="${prefix}/nodelets.xml"/>
     </export>
 </package>
