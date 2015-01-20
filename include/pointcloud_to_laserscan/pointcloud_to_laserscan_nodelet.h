@@ -45,7 +45,7 @@
 #include "boost/thread/mutex.hpp"
 
 #include "nodelet/nodelet.h"
-#include "tf2/buffer_core.h"
+#include "tf2_ros/buffer.h"
 #include "tf2_ros/transform_listener.h"
 #include "tf2_ros/message_filter.h"
 #include "message_filters/subscriber.h"
@@ -70,6 +70,8 @@ namespace pointcloud_to_laserscan
     virtual void onInit();
 
     void cloudCb(const sensor_msgs::PointCloud2ConstPtr &cloud_msg);
+    void failureCb(const sensor_msgs::PointCloud2ConstPtr &cloud_msg,
+        tf2_ros::filter_failure_reasons::FilterFailureReason reason);
 
     void connectCb();
 
@@ -87,6 +89,7 @@ namespace pointcloud_to_laserscan
     // ROS Parameters
     unsigned int input_queue_size_;
     std::string target_frame_;
+    double tolerance_;
     double min_height_, max_height_, angle_min_, angle_max_, angle_increment_, scan_time_, range_min_, range_max_;
     bool use_inf_;
   };
