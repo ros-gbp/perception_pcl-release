@@ -2,6 +2,12 @@
 Changelog for package pointcloud_to_laserscan
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.2.6 (2015-02-04)
+------------------
+* Fix default value for concurrency
+* Fix multithreaded lazy pub sub
+* Contributors: Paul Bovbel
+
 1.2.5 (2015-01-20)
 ------------------
 * Switch to tf_sensor_msgs for transform
