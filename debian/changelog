@@ -1,0 +1,283 @@
+ros-jade-pcl-ros (1.2.6-0trusty) trusty; urgency=high
+
+
+
+ -- Paul Bovbel <paul@bovbel.com>  Wed, 04 Feb 2015 05:00:00 -0000
+
+ros-jade-pcl-ros (1.2.5-0trusty) trusty; urgency=high
+
+
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 20 Jan 2015 05:00:00 -0000
+
+ros-jade-pcl-ros (1.2.4-0trusty) trusty; urgency=high
+
+
+
+ -- Paul Bovbel <paul@bovbel.com>  Thu, 15 Jan 2015 05:00:00 -0000
+
+ros-jade-pcl-ros (1.2.3-0trusty) trusty; urgency=high
+
+  * Update common.py
+    Extended filter limits up to ±100000.0 in order to support intensity channel filtering.
+  * Contributors: Dani Carbonell
+
+ -- Paul Bovbel <paul@bovbel.com>  Sat, 10 Jan 2015 05:00:00 -0000
+
+ros-jade-pcl-ros (1.2.2-0trusty) trusty; urgency=high
+
+  * Adding target_frame
+    [Ability to specify frame in bag_to_pcd ](https://github.com/ros-perception/perception_pcl/issues/55)
+  * Update pcl_nodelets.xml
+    Included missing closing library tag.  This was causing the pcl/Filter nodelets below the missing nodelet tag to not be exported correctly.
+  * Contributors: Matt Derry, Paul Bovbel, Ruffin
+
+ -- Paul Bovbel <paul@bovbel.com>  Sat, 25 Oct 2014 04:00:00 -0000
+
+ros-jade-pcl-ros (1.2.1-0trusty) trusty; urgency=high
+
+  * clean up merge
+  * merge pull request #60 <https://github.com/ros-perception/perception_pcl/issues/60>
+  * Contributors: Paul Bovbel
+
+ -- Paul Bovbel <paul@bovbel.com>  Sat, 13 Sep 2014 04:00:00 -0000
+
+ros-jade-pcl-ros (1.2.0-0trusty) trusty; urgency=high
+
+  * Updated maintainership
+  * Fix TF2 support for bag_to_pcd #46 <https://github.com/ros-perception/perception_pcl/issues/46>
+  * Use cmake_modules to find eigen on indigo #45 <https://github.com/ros-perception/perception_pcl/issues/45>
+
+ -- Paul Bovbel <paul@bovbel.com>  Wed, 09 Apr 2014 04:00:00 -0000
+
+ros-jade-pcl-ros (1.1.7-0trusty) trusty; urgency=high
+
+  * adding more uncaught config dependencies
+  * adding FeatureConfig dependency too
+
+ -- Paul Bovbel <paul@bovbel.com>  Fri, 20 Sep 2013 04:00:00 -0000
+
+ros-jade-pcl-ros (1.1.6-0trusty) trusty; urgency=high
+
+  * add excplicit dependency on gencfg target
+
+ -- Paul Bovbel <paul@bovbel.com>  Fri, 20 Sep 2013 04:00:00 -0000
+
+ros-jade-pcl-ros (1.1.5-0trusty) trusty; urgency=high
+
+  * Updated package.xml's to use new libpcl-all rosdep rules
+  * package.xml: tuned whitespaces
+    This commit removes trailing whitespaces and makes the line with the license information in the package.xml bitwise match exactly the common license information line in most ROS packages.
+    The trailing whitespaces were detected when providing a bitbake recipe in the meta-ros project (github.com/bmwcarit/meta-ros). In the recipe, the hash of the license line is declared and is used to check for changes in the license. For this recipe, it was not matching the common one.
+    A related already merged commit is https://github.com/ros/std_msgs/pull/3 and a related pending commit is https://github.com/ros-perception/pcl_msgs/pull/1.
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 27 Aug 2013 04:00:00 -0000
+
+ros-jade-pcl-ros (1.1.4-0trusty) trusty; urgency=high
+
+  * Fix a serialization error with point_cloud headers
+  * Initialize shared pointers before use in part of the pcl_conversions
+    Should address runtime errors reported in #29 <https://github.com/ros-perception/perception_pcl/issues/29>
+  * Changed the default bounds on filters to -1000, 1000 from -5, 5 in common.py
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 23 Jul 2013 04:00:00 -0000
+
+ros-jade-pcl-ros (1.1.2-0trusty) trusty; urgency=high
+
+  * Fixed missing package exports on pcl_conversions and others
+  * Make find_package on Eigen and PCL REQUIRED
+
+ -- Paul Bovbel <paul@bovbel.com>  Fri, 19 Jul 2013 04:00:00 -0000
+
+ros-jade-pcl-ros (1.1.1-0trusty) trusty; urgency=high
+
+  * Add missing EIGEN define which caused failures on the farm
+
+ -- Paul Bovbel <paul@bovbel.com>  Wed, 10 Jul 2013 04:00:00 -0000
+
+ros-jade-pcl-ros (1.1.0-0trusty) trusty; urgency=high
+
+  * Add missing include in one of the installed headers
+  * Refactors to use pcl-1.7
+  * Use the PointIndices from pcl_msgs
+  * Experimental changes to point_cloud.h
+  * Fixes from converting from pcl-1.7, incomplete
+  * Depend on pcl_conversions and pcl_msgs
+  * bag_to_pcd: check return code of transformPointCloud()
+    This fixes a bug where bag_to_pcd segfaults because of an ignored
+    tf::ExtrapolationException.
+  * Changed #include type to lib
+  * Changed some #include types to lib
+  * removed a whitespace
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 09 Jul 2013 04:00:00 -0000
+
+ros-jade-pcl-ros (1.0.34-0trusty) trusty; urgency=high
+
+  * fixing catkin python imports
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 21 May 2013 04:00:00 -0000
+
+ros-jade-pcl-ros (1.0.33-0trusty) trusty; urgency=high
+
+  * Fixing catkin python imports
+
+ -- Paul Bovbel <paul@bovbel.com>  Mon, 20 May 2013 04:00:00 -0000
+
+ros-jade-pcl-ros (1.0.32-0trusty) trusty; urgency=high
+
+  * Merge pull request #11 <https://github.com/ros-perception/perception_pcl/issues/11> from k-okada/groovy-devel
+    revert removed directories
+  * fix to compileable
+  * copy features/segmentation/surface from fuerte-devel
+
+ -- Paul Bovbel <paul@bovbel.com>  Fri, 17 May 2013 04:00:00 -0000
+
+ros-jade-pcl-ros (1.0.31-0trusty) trusty; urgency=high
+
+  * No changes
+
+ -- Paul Bovbel <paul@bovbel.com>  Mon, 22 Apr 2013 15:58:00 -0000
+
+ros-jade-pcl-ros (1.0.30-0trusty) trusty; urgency=high
+
+  * deprecating bin install targets
+
+ -- Paul Bovbel <paul@bovbel.com>  Mon, 22 Apr 2013 15:47:00 -0000
+
+ros-jade-pcl-ros (1.0.29-0trusty) trusty; urgency=high
+
+  * Fixes #7 <https://github.com/ros-perception/perception_pcl/issues/7>
+  * now also works without specifying publishing interval like described in the wiki.
+
+ -- Paul Bovbel <paul@bovbel.com>  Mon, 04 Mar 2013 05:00:00 -0000
+
+ros-jade-pcl-ros (1.0.28-0trusty) trusty; urgency=high
+
+  * reenabling deprecated install targets - comment added
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 05 Feb 2013 17:29:00 -0000
+
+ros-jade-pcl-ros (1.0.27-0trusty) trusty; urgency=high
+
+  * Update pcl_ros/package.xml
+  * Fixing target install directory for pcl tools
+  * update pluginlib macro
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 05 Feb 2013 17:10:00 -0000
+
+ros-jade-pcl-ros (1.0.26-0trusty) trusty; urgency=high
+
+  * fixing catkin export
+
+ -- Paul Bovbel <paul@bovbel.com>  Thu, 17 Jan 2013 05:00:00 -0000
+
+ros-jade-pcl-ros (1.0.25-0trusty) trusty; urgency=high
+
+  * fixes #1 <https://github.com/ros-perception/perception_pcl/issues/1>
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 01 Jan 2013 05:00:00 -0000
+
+ros-jade-pcl-ros (1.0.24-0trusty) trusty; urgency=high
+
+  * remove obsolete roslib import
+
+ -- Paul Bovbel <paul@bovbel.com>  Fri, 21 Dec 2012 05:00:00 -0000
+
+ros-jade-pcl-ros (1.0.23-0trusty) trusty; urgency=high
+
+  * clean up shared parameters
+
+ -- Paul Bovbel <paul@bovbel.com>  Wed, 19 Dec 2012 21:52:00 -0000
+
+ros-jade-pcl-ros (1.0.22-0trusty) trusty; urgency=high
+
+  * fix dyn reconf files
+
+ -- Paul Bovbel <paul@bovbel.com>  Wed, 19 Dec 2012 20:22:00 -0000
+
+ros-jade-pcl-ros (1.0.21-0trusty) trusty; urgency=high
+
+  * fixing catkin_package debs
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 18 Dec 2012 22:42:00 -0000
+
+ros-jade-pcl-ros (1.0.20-0trusty) trusty; urgency=high
+
+  * adding catkin_project dependencies
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 18 Dec 2012 19:21:00 -0000
+
+ros-jade-pcl-ros (1.0.19-0trusty) trusty; urgency=high
+
+  * adding nodelet_topic_tools dependency
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 18 Dec 2012 02:47:00 -0000
+
+ros-jade-pcl-ros (1.0.18-0trusty) trusty; urgency=high
+
+  * adding pluginlib dependency
+  * adding nodelet dependencies
+  * CMake install fixes
+  * migrating nodelets and tools from fuerte release to pcl_ros
+  * Updated for new <buildtool_depend>catkin<...> catkin rule
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 18 Dec 2012 02:17:00 -0000
+
+ros-jade-pcl-ros (1.0.17-0trusty) trusty; urgency=high
+
+  * remove useless tags
+
+ -- Paul Bovbel <paul@bovbel.com>  Fri, 26 Oct 2012 13:28:00 -0000
+
+ros-jade-pcl-ros (1.0.16-0trusty) trusty; urgency=high
+
+  * no need to depend on a meta-package
+
+ -- Paul Bovbel <paul@bovbel.com>  Fri, 26 Oct 2012 12:53:00 -0000
+
+ros-jade-pcl-ros (1.0.15-0trusty) trusty; urgency=high
+
+  * do not generrate messages automatically
+
+ -- Paul Bovbel <paul@bovbel.com>  Wed, 24 Oct 2012 04:00:00 -0000
+
+ros-jade-pcl-ros (1.0.14-0trusty) trusty; urgency=high
+
+  * bring back the PCL msgs
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 23 Oct 2012 04:00:00 -0000
+
+ros-jade-pcl-ros (1.0.13-0trusty) trusty; urgency=high
+
+  * install library to the right place
+
+ -- Paul Bovbel <paul@bovbel.com>  Thu, 11 Oct 2012 21:46:00 -0000
+
+ros-jade-pcl-ros (1.0.12-0trusty) trusty; urgency=high
+
+
+
+ -- Paul Bovbel <paul@bovbel.com>  Thu, 11 Oct 2012 21:25:00 -0000
+
+ros-jade-pcl-ros (1.0.11-0trusty) trusty; urgency=high
+
+  * fix a few dependencies
+
+ -- Paul Bovbel <paul@bovbel.com>  Wed, 10 Oct 2012 04:00:00 -0000
+
+ros-jade-pcl-ros (1.0.10-0trusty) trusty; urgency=high
+
+  * comply to the new catkin API
+  * fixed pcl_ros manifest
+  * added pcl exports in manifest.xml
+  * fixed rosdeb pcl in pcl_ros/manifest.xml
+  * removing common_rosdeps from manifest.xml
+  * perception_pcl restructuring in groovy branch
+  * restructuring perception_pcl in groovy branch
+  * catkinized version of perception_pcl for groovy
+  * added PCL 1.6 stack for groovy
+
+ -- Paul Bovbel <paul@bovbel.com>  Thu, 04 Oct 2012 04:00:00 -0000
+
+
