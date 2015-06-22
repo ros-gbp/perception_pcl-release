@@ -1,0 +1,12 @@
+Source: ros-jade-pcl-ros
+Section: misc
+Priority: extra
+Maintainer: Paul Bovbel <paul@bovbel.com>
+Build-Depends: debhelper (>= 9.0.0), libeigen3-dev, libpcl-1.7-all-dev, libvtk-java, python-vtk, ros-jade-catkin, ros-jade-cmake-modules, ros-jade-dynamic-reconfigure, ros-jade-genmsg, ros-jade-nodelet, ros-jade-nodelet-topic-tools, ros-jade-pcl-conversions, ros-jade-pcl-msgs, ros-jade-pluginlib, ros-jade-rosbag, ros-jade-rosconsole, ros-jade-roscpp, ros-jade-roslib, ros-jade-sensor-msgs, ros-jade-std-msgs, ros-jade-tf
+Homepage: http://ros.org/wiki/perception_pcl
+Standards-Version: 3.9.2
+
+Package: ros-jade-pcl-ros
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libeigen3-dev, libpcl-1.7-all, libpcl-1.7-all-dev, libvtk-java, python-vtk, ros-jade-dynamic-reconfigure, ros-jade-message-filters, ros-jade-nodelet, ros-jade-nodelet-topic-tools, ros-jade-pcl-conversions, ros-jade-pcl-msgs, ros-jade-pluginlib, ros-jade-rosbag, ros-jade-roscpp, ros-jade-sensor-msgs, ros-jade-std-msgs, ros-jade-tf
+Description: PCL (Point Cloud Library) ROS interface stack. PCL-ROS is the preferred bridge for 3D applications involving n-D Point Clouds and 3D geometry processing in ROS.
