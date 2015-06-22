@@ -2,8 +2,10 @@
 Changelog for package perception_pcl
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.2.7 (2015-06-08)
+1.3.0 (2015-06-22)
 ------------------
+* Remove pointcloud_to_laserscan package
+* Contributors: Paul Bovbel
 
 1.2.6 (2015-02-04)
 ------------------
