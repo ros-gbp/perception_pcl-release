@@ -1,3 +1,26 @@
+## perception_pcl (jade) - 1.3.0-0
+
+The packages in the `perception_pcl` repository were released into the `jade` distro by running `/usr/bin/bloom-release --rosdistro jade --track jade perception_pcl --edit` on `Mon, 22 Jun 2015 21:18:50 -0000`
+
+These packages were released:
+- `pcl_ros`
+- `perception_pcl`
+
+Version of package(s) in repository `perception_pcl`:
+- upstream repository: https://github.com/ros-perception/perception_pcl.git
+- release repository: https://github.com/ros-gbp/perception_pcl-release.git
+- rosdistro version: `1.2.6-1`
+- old version: `1.2.7-0`
+- new version: `1.3.0-0`
+
+Versions of tools used:
+- bloom version: `0.5.20`
+- catkin_pkg version: `0.2.8`
+- rosdep version: `0.11.2`
+- rosdistro version: `0.4.2`
+- vcstools version: `0.1.36`
+
+
 ## perception_pcl (jade) - 1.2.7-0
 
 The packages in the `perception_pcl` repository were released into the `jade` distro by running `/usr/bin/bloom-release --rosdistro jade --track jade perception_pcl` on `Mon, 22 Jun 2015 21:16:43 -0000`
