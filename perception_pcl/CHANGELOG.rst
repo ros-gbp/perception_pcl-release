@@ -2,6 +2,9 @@
 Changelog for package perception_pcl
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.4.0 (2016-04-22)
+------------------
+
 1.3.0 (2015-06-22)
 ------------------
 * Remove pointcloud_to_laserscan package
