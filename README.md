@@ -1,3 +1,28 @@
+## perception_pcl (kinetic) - 1.4.0-0
+
+The packages in the `perception_pcl` repository were released into the `kinetic` distro by running `/usr/bin/bloom-release -r kinetic -t kinetic perception_pcl` on `Fri, 22 Apr 2016 17:52:18 -0000`
+
+These packages were released:
+- `pcl_ros`
+- `perception_pcl`
+
+Version of package(s) in repository `perception_pcl`:
+
+- upstream repository: https://github.com/ros-perception/perception_pcl.git
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `null`
+- new version: `1.4.0-0`
+
+Versions of tools used:
+
+- bloom version: `0.5.21`
+- catkin_pkg version: `0.2.10`
+- rosdep version: `0.11.4`
+- rosdistro version: `0.4.7`
+- vcstools version: `0.1.38`
+
+
 ## perception_pcl (jade) - 1.3.0-0
 
 The packages in the `perception_pcl` repository were released into the `jade` distro by running `/usr/bin/bloom-release --rosdistro jade --track jade perception_pcl --edit` on `Mon, 22 Jun 2015 21:18:50 -0000`
