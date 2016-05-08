@@ -117,7 +117,7 @@ tracks:
     - git-bloom-generate -y rosrpm --prefix release/:{ros_distro} :{ros_distro} -i
       :{release_inc}
     devel_branch: kinetic-devel
-    last_version: 1.4.0
+    last_version: 1.4.1
     name: perception_pcl
     patches: null
     release_inc: '0'
