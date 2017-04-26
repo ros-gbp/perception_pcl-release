@@ -2,6 +2,19 @@
 Changelog for package pcl_ros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.5.1 (2017-04-26)
+------------------
+* Add my name as a maintainer
+* Contributors: Kentaro Wada
+
+1.5.0 (2017-04-25)
+------------------
+* Fix lib name duplication error in ubunt:zesty
+* Detect automatically the version of PCL in cmake
+* Install xml files declaring nodelets
+* Fix syntax of nodelet manifest file by splitting files for each library.
+* Contributors: Kentaro Wada
+
 1.4.0 (2016-04-22)
 ------------------
 * Fixup libproj-dev rosdep
