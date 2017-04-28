@@ -1,0 +1,13 @@
+Source: ros-lunar-pcl-ros
+Section: misc
+Priority: extra
+Maintainer: Paul Bovbel <paul@bovbel.com>
+Build-Depends: debhelper (>= 9.0.0), libeigen3-dev, libpcl-dev, libproj-dev, libvtk6-java, ros-lunar-catkin, ros-lunar-cmake-modules, ros-lunar-dynamic-reconfigure, ros-lunar-genmsg, ros-lunar-message-filters, ros-lunar-nodelet, ros-lunar-nodelet-topic-tools, ros-lunar-pcl-conversions, ros-lunar-pcl-msgs, ros-lunar-pluginlib, ros-lunar-rosbag, ros-lunar-rosconsole, ros-lunar-roscpp, ros-lunar-roslib, ros-lunar-rostest, ros-lunar-sensor-msgs, ros-lunar-std-msgs, ros-lunar-tf, ros-lunar-tf2-eigen
+Homepage: http://ros.org/wiki/perception_pcl
+Standards-Version: 3.9.2
+
+Package: ros-lunar-pcl-ros
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libeigen3-dev, libpcl-dev, libproj-dev, libvtk6-java, ros-lunar-dynamic-reconfigure, ros-lunar-message-filters, ros-lunar-nodelet, ros-lunar-nodelet-topic-tools, ros-lunar-pcl-conversions, ros-lunar-pcl-msgs, ros-lunar-pluginlib, ros-lunar-rosbag, ros-lunar-roscpp, ros-lunar-sensor-msgs, ros-lunar-std-msgs, ros-lunar-tf, ros-lunar-tf2-eigen
+Description: PCL (Point Cloud Library) ROS interface stack.
+ PCL-ROS is the preferred bridge for 3D applications involving n-D Point Clouds and 3D geometry processing in ROS.
