@@ -2,6 +2,9 @@
 Changelog for package perception_pcl
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.5.2 (2017-04-29)
+------------------
+
 1.5.1 (2017-04-26)
 ------------------
 * Add my name as a maintainer
