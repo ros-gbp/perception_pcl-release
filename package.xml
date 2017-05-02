@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>pcl_ros</name>
-  <version>1.5.2</version>
+  <version>1.5.3</version>
   <description>
 
   PCL (Point Cloud Library) ROS interface stack. PCL-ROS is the preferred
@@ -45,6 +45,8 @@
   <depend>libvtk-java</depend>
   <!-- libproj-dev needed due to error in vtk6 -->
   <depend>proj</depend>
+  <!-- qtbase5-dev needed due to error in qt5 -->
+  <depend>qtbase5-dev</depend>
 
   <test_depend>rostest</test_depend>
 
