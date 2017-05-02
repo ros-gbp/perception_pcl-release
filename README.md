@@ -1,3 +1,28 @@
+## perception_pcl (lunar) - 1.5.3-0
+
+The packages in the `perception_pcl` repository were released into the `lunar` distro by running `/usr/local/bin/bloom-release -r lunar -t lunar perception_pcl` on `Tue, 02 May 2017 17:24:19 -0000`
+
+These packages were released:
+- `pcl_ros`
+- `perception_pcl`
+
+Version of package(s) in repository `perception_pcl`:
+
+- upstream repository: https://github.com/ros-perception/perception_pcl.git
+- release repository: https://github.com/ros-gbp/perception_pcl-release.git
+- rosdistro version: `1.5.2-0`
+- old version: `1.5.2-0`
+- new version: `1.5.3-0`
+
+Versions of tools used:
+
+- bloom version: `0.5.26`
+- catkin_pkg version: `0.3.1`
+- rosdep version: `0.11.5`
+- rosdistro version: `0.6.2`
+- vcstools version: `0.1.39`
+
+
 ## perception_pcl (lunar) - 1.5.2-0
 
 The packages in the `perception_pcl` repository were released into the `lunar` distro by running `/usr/local/bin/bloom-release perception_pcl --track lunar --rosdistro lunar` on `Sat, 29 Apr 2017 08:46:35 -0000`
