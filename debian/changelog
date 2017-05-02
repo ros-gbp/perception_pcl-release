@@ -1,0 +1,352 @@
+ros-lunar-pcl-ros (1.5.3-0yakkety) yakkety; urgency=high
+
+  * Add dependency on qtbase5-dev for find_package(Qt5Widgets)
+    See https://github.com/ros-perception/perception_pcl/pull/117#issuecomment-298158272 for detail.
+  * Contributors: Kentaro Wada
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 02 May 2017 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.5.2-0yakkety) yakkety; urgency=high
+
+  * Find Qt5Widgets to fix -lQt5::Widgets error
+  * Contributors: Kentaro Wada
+
+ -- Paul Bovbel <paul@bovbel.com>  Fri, 28 Apr 2017 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.5.1-0yakkety) yakkety; urgency=high
+
+  * Add my name as a maintainer
+  * Contributors: Kentaro Wada
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 25 Apr 2017 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.5.0-0yakkety) yakkety; urgency=high
+
+  * Fix lib name duplication error in ubunt:zesty
+  * Detect automatically the version of PCL in cmake
+  * Install xml files declaring nodelets
+  * Fix syntax of nodelet manifest file by splitting files for each library.
+  * Contributors: Kentaro Wada
+
+ -- Paul Bovbel <paul@bovbel.com>  Mon, 24 Apr 2017 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.4.0-0yakkety) yakkety; urgency=high
+
+  * Fixup libproj-dev rosdep
+  * Add build depend on libproj, since it's not provided by vtk right now
+  * manually remove dependency on vtkproj from PCL_LIBRARIES
+  * Remove python-vtk for kinetic-devel, see issue #44 <https://github.com/ros-perception/perception_pcl/issues/44>
+  * Contributors: Jackie Kay, Paul Bovbel
+
+ -- Paul Bovbel <paul@bovbel.com>  Thu, 21 Apr 2016 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.3.0-0yakkety) yakkety; urgency=high
+
+  * cleanup broken library links
+    All removed library names are included in ${PCL_LIBRARIES}.
+    However, the plain library names broke catkin's overlay mechanism:
+    Where ${PCL_LIBRARIES} could point to a local installation of the PCL,
+    e.g. pcd_ros_segmentation might still link to the system-wide installed version
+    of pcl_segmentation.
+  * Fixed test for jade-devel. Progress on #92 <https://github.com/ros-perception/perception_pcl/issues/92>
+  * commented out test_tf_message_filter_pcl
+    Until ros/geometry#80 <https://github.com/ros/geometry/issues/80> has been merged the test will fail.
+  * fixed indentation and author
+  * Adds a test for tf message filters with pcl pointclouds
+  * specialized HasHeader, TimeStamp, FrameId
+    - HasHeader now returns false
+    - TimeStamp and FrameId specialed for pcl::PointCloud<T> for any point type T
+    These changes allow to use pcl::PointCloud with tf::MessageFilter
+  * Sync pcl_nodelets.xml from hydro to indigo
+    Fixes to pass catkin lint -W1
+  * Fixes #87 <https://github.com/ros-perception/perception_pcl/issues/87> for Indigo
+  * Fixes #85 <https://github.com/ros-perception/perception_pcl/issues/85> for Indigo
+  * Fixes #77 <https://github.com/ros-perception/perception_pcl/issues/77> and #80 <https://github.com/ros-perception/perception_pcl/issues/80> for indigo
+  * Added option to save pointclouds in binary and binary compressed format
+  * Contributors: Brice Rebsamen, Lucid One, Mitchell Wills, v4hn
+
+ -- Paul Bovbel <paul@bovbel.com>  Sun, 21 Jun 2015 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.2.6-0yakkety) yakkety; urgency=high
+
+
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 03 Feb 2015 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.2.5-0yakkety) yakkety; urgency=high
+
+
+
+ -- Paul Bovbel <paul@bovbel.com>  Mon, 19 Jan 2015 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.2.4-0yakkety) yakkety; urgency=high
+
+
+
+ -- Paul Bovbel <paul@bovbel.com>  Wed, 14 Jan 2015 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.2.3-0yakkety) yakkety; urgency=high
+
+  * Update common.py
+    Extended filter limits up to ±100000.0 in order to support intensity channel filtering.
+  * Contributors: Dani Carbonell
+
+ -- Paul Bovbel <paul@bovbel.com>  Fri, 09 Jan 2015 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.2.2-0yakkety) yakkety; urgency=high
+
+  * Adding target_frame
+    [Ability to specify frame in bag_to_pcd ](https://github.com/ros-perception/perception_pcl/issues/55)
+  * Update pcl_nodelets.xml
+    Included missing closing library tag.  This was causing the pcl/Filter nodelets below the missing nodelet tag to not be exported correctly.
+  * Contributors: Matt Derry, Paul Bovbel, Ruffin
+
+ -- Paul Bovbel <paul@bovbel.com>  Fri, 24 Oct 2014 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.2.1-0yakkety) yakkety; urgency=high
+
+  * clean up merge
+  * merge pull request #60 <https://github.com/ros-perception/perception_pcl/issues/60>
+  * Contributors: Paul Bovbel
+
+ -- Paul Bovbel <paul@bovbel.com>  Fri, 12 Sep 2014 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.2.0-0yakkety) yakkety; urgency=high
+
+  * Updated maintainership
+  * Fix TF2 support for bag_to_pcd #46 <https://github.com/ros-perception/perception_pcl/issues/46>
+  * Use cmake_modules to find eigen on indigo #45 <https://github.com/ros-perception/perception_pcl/issues/45>
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 08 Apr 2014 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.1.7-0yakkety) yakkety; urgency=high
+
+  * adding more uncaught config dependencies
+  * adding FeatureConfig dependency too
+
+ -- Paul Bovbel <paul@bovbel.com>  Thu, 19 Sep 2013 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.1.6-0yakkety) yakkety; urgency=high
+
+  * add excplicit dependency on gencfg target
+
+ -- Paul Bovbel <paul@bovbel.com>  Thu, 19 Sep 2013 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.1.5-0yakkety) yakkety; urgency=high
+
+  * Updated package.xml's to use new libpcl-all rosdep rules
+  * package.xml: tuned whitespaces
+    This commit removes trailing whitespaces and makes the line with the license information in the package.xml bitwise match exactly the common license information line in most ROS packages.
+    The trailing whitespaces were detected when providing a bitbake recipe in the meta-ros project (github.com/bmwcarit/meta-ros). In the recipe, the hash of the license line is declared and is used to check for changes in the license. For this recipe, it was not matching the common one.
+    A related already merged commit is https://github.com/ros/std_msgs/pull/3 and a related pending commit is https://github.com/ros-perception/pcl_msgs/pull/1.
+
+ -- Paul Bovbel <paul@bovbel.com>  Mon, 26 Aug 2013 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.1.4-0yakkety) yakkety; urgency=high
+
+  * Fix a serialization error with point_cloud headers
+  * Initialize shared pointers before use in part of the pcl_conversions
+    Should address runtime errors reported in #29 <https://github.com/ros-perception/perception_pcl/issues/29>
+  * Changed the default bounds on filters to -1000, 1000 from -5, 5 in common.py
+
+ -- Paul Bovbel <paul@bovbel.com>  Mon, 22 Jul 2013 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.1.2-0yakkety) yakkety; urgency=high
+
+  * Fixed missing package exports on pcl_conversions and others
+  * Make find_package on Eigen and PCL REQUIRED
+
+ -- Paul Bovbel <paul@bovbel.com>  Thu, 18 Jul 2013 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.1.1-0yakkety) yakkety; urgency=high
+
+  * Add missing EIGEN define which caused failures on the farm
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 09 Jul 2013 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.1.0-0yakkety) yakkety; urgency=high
+
+  * Add missing include in one of the installed headers
+  * Refactors to use pcl-1.7
+  * Use the PointIndices from pcl_msgs
+  * Experimental changes to point_cloud.h
+  * Fixes from converting from pcl-1.7, incomplete
+  * Depend on pcl_conversions and pcl_msgs
+  * bag_to_pcd: check return code of transformPointCloud()
+    This fixes a bug where bag_to_pcd segfaults because of an ignored
+    tf::ExtrapolationException.
+  * Changed #include type to lib
+  * Changed some #include types to lib
+  * removed a whitespace
+
+ -- Paul Bovbel <paul@bovbel.com>  Mon, 08 Jul 2013 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.0.34-0yakkety) yakkety; urgency=high
+
+  * fixing catkin python imports
+
+ -- Paul Bovbel <paul@bovbel.com>  Mon, 20 May 2013 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.0.33-0yakkety) yakkety; urgency=high
+
+  * Fixing catkin python imports
+
+ -- Paul Bovbel <paul@bovbel.com>  Sun, 19 May 2013 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.0.32-0yakkety) yakkety; urgency=high
+
+  * Merge pull request #11 <https://github.com/ros-perception/perception_pcl/issues/11> from k-okada/groovy-devel
+    revert removed directories
+  * fix to compileable
+  * copy features/segmentation/surface from fuerte-devel
+
+ -- Paul Bovbel <paul@bovbel.com>  Thu, 16 May 2013 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.0.31-0yakkety) yakkety; urgency=high
+
+  * No changes
+
+ -- Paul Bovbel <paul@bovbel.com>  Mon, 22 Apr 2013 02:58:00 -0000
+
+ros-lunar-pcl-ros (1.0.30-0yakkety) yakkety; urgency=high
+
+  * deprecating bin install targets
+
+ -- Paul Bovbel <paul@bovbel.com>  Mon, 22 Apr 2013 02:47:00 -0000
+
+ros-lunar-pcl-ros (1.0.29-0yakkety) yakkety; urgency=high
+
+  * Fixes #7 <https://github.com/ros-perception/perception_pcl/issues/7>
+  * now also works without specifying publishing interval like described in the wiki.
+
+ -- Paul Bovbel <paul@bovbel.com>  Sun, 03 Mar 2013 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.0.28-0yakkety) yakkety; urgency=high
+
+  * reenabling deprecated install targets - comment added
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 05 Feb 2013 03:29:00 -0000
+
+ros-lunar-pcl-ros (1.0.27-0yakkety) yakkety; urgency=high
+
+  * Update pcl_ros/package.xml
+  * Fixing target install directory for pcl tools
+  * update pluginlib macro
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 05 Feb 2013 03:10:00 -0000
+
+ros-lunar-pcl-ros (1.0.26-0yakkety) yakkety; urgency=high
+
+  * fixing catkin export
+
+ -- Paul Bovbel <paul@bovbel.com>  Wed, 16 Jan 2013 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.0.25-0yakkety) yakkety; urgency=high
+
+  * fixes #1 <https://github.com/ros-perception/perception_pcl/issues/1>
+
+ -- Paul Bovbel <paul@bovbel.com>  Mon, 31 Dec 2012 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.0.24-0yakkety) yakkety; urgency=high
+
+  * remove obsolete roslib import
+
+ -- Paul Bovbel <paul@bovbel.com>  Thu, 20 Dec 2012 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.0.23-0yakkety) yakkety; urgency=high
+
+  * clean up shared parameters
+
+ -- Paul Bovbel <paul@bovbel.com>  Wed, 19 Dec 2012 07:52:00 -0000
+
+ros-lunar-pcl-ros (1.0.22-0yakkety) yakkety; urgency=high
+
+  * fix dyn reconf files
+
+ -- Paul Bovbel <paul@bovbel.com>  Wed, 19 Dec 2012 06:22:00 -0000
+
+ros-lunar-pcl-ros (1.0.21-0yakkety) yakkety; urgency=high
+
+  * fixing catkin_package debs
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 18 Dec 2012 08:42:00 -0000
+
+ros-lunar-pcl-ros (1.0.20-0yakkety) yakkety; urgency=high
+
+  * adding catkin_project dependencies
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 18 Dec 2012 05:21:00 -0000
+
+ros-lunar-pcl-ros (1.0.19-0yakkety) yakkety; urgency=high
+
+  * adding nodelet_topic_tools dependency
+
+ -- Paul Bovbel <paul@bovbel.com>  Mon, 17 Dec 2012 12:47:00 -0000
+
+ros-lunar-pcl-ros (1.0.18-0yakkety) yakkety; urgency=high
+
+  * adding pluginlib dependency
+  * adding nodelet dependencies
+  * CMake install fixes
+  * migrating nodelets and tools from fuerte release to pcl_ros
+  * Updated for new <buildtool_depend>catkin<...> catkin rule
+
+ -- Paul Bovbel <paul@bovbel.com>  Mon, 17 Dec 2012 12:17:00 -0000
+
+ros-lunar-pcl-ros (1.0.17-0yakkety) yakkety; urgency=high
+
+  * remove useless tags
+
+ -- Paul Bovbel <paul@bovbel.com>  Fri, 26 Oct 2012 00:28:00 -0000
+
+ros-lunar-pcl-ros (1.0.16-0yakkety) yakkety; urgency=high
+
+  * no need to depend on a meta-package
+
+ -- Paul Bovbel <paul@bovbel.com>  Thu, 25 Oct 2012 23:53:00 -0000
+
+ros-lunar-pcl-ros (1.0.15-0yakkety) yakkety; urgency=high
+
+  * do not generrate messages automatically
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 23 Oct 2012 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.0.14-0yakkety) yakkety; urgency=high
+
+  * bring back the PCL msgs
+
+ -- Paul Bovbel <paul@bovbel.com>  Mon, 22 Oct 2012 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.0.13-0yakkety) yakkety; urgency=high
+
+  * install library to the right place
+
+ -- Paul Bovbel <paul@bovbel.com>  Thu, 11 Oct 2012 08:46:00 -0000
+
+ros-lunar-pcl-ros (1.0.12-0yakkety) yakkety; urgency=high
+
+
+
+ -- Paul Bovbel <paul@bovbel.com>  Thu, 11 Oct 2012 08:25:00 -0000
+
+ros-lunar-pcl-ros (1.0.11-0yakkety) yakkety; urgency=high
+
+  * fix a few dependencies
+
+ -- Paul Bovbel <paul@bovbel.com>  Tue, 09 Oct 2012 15:00:00 -0000
+
+ros-lunar-pcl-ros (1.0.10-0yakkety) yakkety; urgency=high
+
+  * comply to the new catkin API
+  * fixed pcl_ros manifest
+  * added pcl exports in manifest.xml
+  * fixed rosdeb pcl in pcl_ros/manifest.xml
+  * removing common_rosdeps from manifest.xml
+  * perception_pcl restructuring in groovy branch
+  * restructuring perception_pcl in groovy branch
+  * catkinized version of perception_pcl for groovy
+  * added PCL 1.6 stack for groovy
+
+ -- Paul Bovbel <paul@bovbel.com>  Wed, 03 Oct 2012 15:00:00 -0000
+
+
