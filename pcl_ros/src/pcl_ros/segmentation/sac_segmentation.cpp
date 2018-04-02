@@ -50,54 +50,10 @@ pcl_ros::SACSegmentation::onInit ()
   // Call the super onInit ()
   PCLNodelet::onInit ();
 
-  // If we're supposed to look for PointIndices (indices)
-  if (use_indices_)
-  {
-    // Subscribe to the input using a filter
-    sub_input_filter_.subscribe (*pnh_, "input", max_queue_size_);
-    sub_indices_filter_.subscribe (*pnh_, "indices", max_queue_size_);
-
-    // when "use_indices" is set to true, and "latched_indices" is set to true,
-    // we'll subscribe and get a separate callback for PointIndices that will 
-    // save the indices internally, and a PointCloud + PointIndices callback 
-    // will take care of meshing the new PointClouds with the old saved indices. 
-    if (latched_indices_)
-    {
-      // Subscribe to a callback that saves the indices
-      sub_indices_filter_.registerCallback (bind (&SACSegmentation::indices_callback, this, _1));
-      // Subscribe to a callback that sets the header of the saved indices to the cloud header
-      sub_input_filter_.registerCallback (bind (&SACSegmentation::input_callback, this, _1));
-
-      // Synchronize the two topics. No need for an approximate synchronizer here, as we'll
-      // match the timestamps exactly
-      sync_input_indices_e_ = boost::make_shared <message_filters::Synchronizer<sync_policies::ExactTime<PointCloud, PointIndices> > > (max_queue_size_);
-      sync_input_indices_e_->connectInput (sub_input_filter_, nf_pi_);
-      sync_input_indices_e_->registerCallback (bind (&SACSegmentation::input_indices_callback, this, _1, _2));
-    }
-    // "latched_indices" not set, proceed with regular <input,indices> pairs
-    else
-    {
-      if (approximate_sync_)
-      {
-        sync_input_indices_a_ = boost::make_shared <message_filters::Synchronizer<sync_policies::ApproximateTime<PointCloud, PointIndices> > > (max_queue_size_);
-        sync_input_indices_a_->connectInput (sub_input_filter_, sub_indices_filter_);
-        sync_input_indices_a_->registerCallback (bind (&SACSegmentation::input_indices_callback, this, _1, _2));
-      }
-      else
-      {
-        sync_input_indices_e_ = boost::make_shared <message_filters::Synchronizer<sync_policies::ExactTime<PointCloud, PointIndices> > > (max_queue_size_);
-        sync_input_indices_e_->connectInput (sub_input_filter_, sub_indices_filter_);
-        sync_input_indices_e_->registerCallback (bind (&SACSegmentation::input_indices_callback, this, _1, _2));
-      }
-    }
-  }
-  else
-    // Subscribe in an old fashion to input only (no filters)
-    sub_input_ = pnh_->subscribe<PointCloud> ("input", max_queue_size_,  bind (&SACSegmentation::input_indices_callback, this, _1, PointIndicesConstPtr ()));
 
   // Advertise the output topics
-  pub_indices_ = pnh_->advertise<PointIndices> ("inliers", max_queue_size_);
-  pub_model_   = pnh_->advertise<ModelCoefficients> ("model", max_queue_size_);
+  pub_indices_ = advertise<PointIndices> (*pnh_, "inliers", max_queue_size_);
+  pub_model_   = advertise<ModelCoefficients> (*pnh_, "model", max_queue_size_);
 
   // ---[ Mandatory parameters
   int model_type;
@@ -167,6 +123,71 @@ pcl_ros::SACSegmentation::onInit ()
   impl_.setModelType (model_type);
   impl_.setMethodType (method_type);
   impl_.setAxis (axis);
+
+  onInitPostProcess ();
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+void
+pcl_ros::SACSegmentation::subscribe ()
+{
+  // If we're supposed to look for PointIndices (indices)
+  if (use_indices_)
+  {
+    // Subscribe to the input using a filter
+    sub_input_filter_.subscribe (*pnh_, "input", max_queue_size_);
+    sub_indices_filter_.subscribe (*pnh_, "indices", max_queue_size_);
+
+    // when "use_indices" is set to true, and "latched_indices" is set to true,
+    // we'll subscribe and get a separate callback for PointIndices that will 
+    // save the indices internally, and a PointCloud + PointIndices callback 
+    // will take care of meshing the new PointClouds with the old saved indices. 
+    if (latched_indices_)
+    {
+      // Subscribe to a callback that saves the indices
+      sub_indices_filter_.registerCallback (bind (&SACSegmentation::indices_callback, this, _1));
+      // Subscribe to a callback that sets the header of the saved indices to the cloud header
+      sub_input_filter_.registerCallback (bind (&SACSegmentation::input_callback, this, _1));
+
+      // Synchronize the two topics. No need for an approximate synchronizer here, as we'll
+      // match the timestamps exactly
+      sync_input_indices_e_ = boost::make_shared <message_filters::Synchronizer<sync_policies::ExactTime<PointCloud, PointIndices> > > (max_queue_size_);
+      sync_input_indices_e_->connectInput (sub_input_filter_, nf_pi_);
+      sync_input_indices_e_->registerCallback (bind (&SACSegmentation::input_indices_callback, this, _1, _2));
+    }
+    // "latched_indices" not set, proceed with regular <input,indices> pairs
+    else
+    {
+      if (approximate_sync_)
+      {
+        sync_input_indices_a_ = boost::make_shared <message_filters::Synchronizer<sync_policies::ApproximateTime<PointCloud, PointIndices> > > (max_queue_size_);
+        sync_input_indices_a_->connectInput (sub_input_filter_, sub_indices_filter_);
+        sync_input_indices_a_->registerCallback (bind (&SACSegmentation::input_indices_callback, this, _1, _2));
+      }
+      else
+      {
+        sync_input_indices_e_ = boost::make_shared <message_filters::Synchronizer<sync_policies::ExactTime<PointCloud, PointIndices> > > (max_queue_size_);
+        sync_input_indices_e_->connectInput (sub_input_filter_, sub_indices_filter_);
+        sync_input_indices_e_->registerCallback (bind (&SACSegmentation::input_indices_callback, this, _1, _2));
+      }
+    }
+  }
+  else
+    // Subscribe in an old fashion to input only (no filters)
+    sub_input_ = pnh_->subscribe<PointCloud> ("input", max_queue_size_,  bind (&SACSegmentation::input_indices_callback, this, _1, PointIndicesConstPtr ()));
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+void
+pcl_ros::SACSegmentation::unsubscribe ()
+{
+  if (use_indices_)
+  {
+    sub_input_filter_.unsubscribe ();
+    sub_indices_filter_.unsubscribe ();
+  }
+  else
+    sub_input_.shutdown ();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -248,10 +269,6 @@ pcl_ros::SACSegmentation::input_indices_callback (const PointCloudConstPtr &clou
                                                   const PointIndicesConstPtr &indices)
 {
   boost::mutex::scoped_lock lock (mutex_);
-
-  // No subscribers, no work
-  if (pub_indices_.getNumSubscribers () <= 0 && pub_model_.getNumSubscribers () <= 0)
-    return;
 
   pcl_msgs::PointIndices inliers;
   pcl_msgs::ModelCoefficients model;
@@ -354,48 +371,9 @@ pcl_ros::SACSegmentationFromNormals::onInit ()
   dynamic_reconfigure::Server<SACSegmentationFromNormalsConfig>::CallbackType f = boost::bind (&SACSegmentationFromNormals::config_callback, this, _1, _2);
   srv_->setCallback (f);
 
-  // Subscribe to the input and normals using filters
-  sub_input_filter_.subscribe (*pnh_, "input", max_queue_size_);
-  sub_normals_filter_.subscribe (*pnh_, "normals", max_queue_size_);
-
-  // Subscribe to an axis direction along which the model search is to be constrained (the first 3 model coefficients will be checked)
-  sub_axis_ = pnh_->subscribe ("axis", 1, &SACSegmentationFromNormals::axis_callback, this);
-
-  if (approximate_sync_)
-    sync_input_normals_indices_a_ = boost::make_shared <message_filters::Synchronizer<sync_policies::ApproximateTime<PointCloud, PointCloudN, PointIndices> > > (max_queue_size_);
-  else
-    sync_input_normals_indices_e_ = boost::make_shared <message_filters::Synchronizer<sync_policies::ExactTime<PointCloud, PointCloudN, PointIndices> > > (max_queue_size_);
-
-  // If we're supposed to look for PointIndices (indices)
-  if (use_indices_)
-  {
-    // Subscribe to the input using a filter
-    sub_indices_filter_.subscribe (*pnh_, "indices", max_queue_size_);
-
-    if (approximate_sync_)
-      sync_input_normals_indices_a_->connectInput (sub_input_filter_, sub_normals_filter_, sub_indices_filter_);
-    else
-      sync_input_normals_indices_e_->connectInput (sub_input_filter_, sub_normals_filter_, sub_indices_filter_);
-  }
-  else
-  {
-    // Create a different callback for copying over the timestamp to fake indices
-    sub_input_filter_.registerCallback (bind (&SACSegmentationFromNormals::input_callback, this, _1));
-
-    if (approximate_sync_)
-      sync_input_normals_indices_a_->connectInput (sub_input_filter_, sub_normals_filter_, nf_);
-    else
-      sync_input_normals_indices_e_->connectInput (sub_input_filter_, sub_normals_filter_, nf_);
-  }
-
-  if (approximate_sync_)
-    sync_input_normals_indices_a_->registerCallback (bind (&SACSegmentationFromNormals::input_normals_indices_callback, this, _1, _2, _3));
-  else
-    sync_input_normals_indices_e_->registerCallback (bind (&SACSegmentationFromNormals::input_normals_indices_callback, this, _1, _2, _3));
-
   // Advertise the output topics
-  pub_indices_ = pnh_->advertise<PointIndices> ("inliers", max_queue_size_);
-  pub_model_   = pnh_->advertise<ModelCoefficients> ("model", max_queue_size_);
+  pub_indices_ = advertise<PointIndices> (*pnh_, "inliers", max_queue_size_);
+  pub_model_   = advertise<ModelCoefficients> (*pnh_, "model", max_queue_size_);
 
   // ---[ Mandatory parameters
   int model_type;
@@ -460,6 +438,65 @@ pcl_ros::SACSegmentationFromNormals::onInit ()
   impl_.setModelType (model_type);
   impl_.setMethodType (method_type);
   impl_.setAxis (axis);
+
+  onInitPostProcess ();
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+void
+pcl_ros::SACSegmentationFromNormals::subscribe ()
+{
+  // Subscribe to the input and normals using filters
+  sub_input_filter_.subscribe (*pnh_, "input", max_queue_size_);
+  sub_normals_filter_.subscribe (*pnh_, "normals", max_queue_size_);
+
+  // Subscribe to an axis direction along which the model search is to be constrained (the first 3 model coefficients will be checked)
+  sub_axis_ = pnh_->subscribe ("axis", 1, &SACSegmentationFromNormals::axis_callback, this);
+
+  if (approximate_sync_)
+    sync_input_normals_indices_a_ = boost::make_shared <message_filters::Synchronizer<sync_policies::ApproximateTime<PointCloud, PointCloudN, PointIndices> > > (max_queue_size_);
+  else
+    sync_input_normals_indices_e_ = boost::make_shared <message_filters::Synchronizer<sync_policies::ExactTime<PointCloud, PointCloudN, PointIndices> > > (max_queue_size_);
+
+  // If we're supposed to look for PointIndices (indices)
+  if (use_indices_)
+  {
+    // Subscribe to the input using a filter
+    sub_indices_filter_.subscribe (*pnh_, "indices", max_queue_size_);
+
+    if (approximate_sync_)
+      sync_input_normals_indices_a_->connectInput (sub_input_filter_, sub_normals_filter_, sub_indices_filter_);
+    else
+      sync_input_normals_indices_e_->connectInput (sub_input_filter_, sub_normals_filter_, sub_indices_filter_);
+  }
+  else
+  {
+    // Create a different callback for copying over the timestamp to fake indices
+    sub_input_filter_.registerCallback (bind (&SACSegmentationFromNormals::input_callback, this, _1));
+
+    if (approximate_sync_)
+      sync_input_normals_indices_a_->connectInput (sub_input_filter_, sub_normals_filter_, nf_);
+    else
+      sync_input_normals_indices_e_->connectInput (sub_input_filter_, sub_normals_filter_, nf_);
+  }
+
+  if (approximate_sync_)
+    sync_input_normals_indices_a_->registerCallback (bind (&SACSegmentationFromNormals::input_normals_indices_callback, this, _1, _2, _3));
+  else
+    sync_input_normals_indices_e_->registerCallback (bind (&SACSegmentationFromNormals::input_normals_indices_callback, this, _1, _2, _3));
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+void
+pcl_ros::SACSegmentationFromNormals::unsubscribe ()
+{
+  sub_input_filter_.unsubscribe ();
+  sub_normals_filter_.unsubscribe ();
+
+  sub_axis_.shutdown ();
+
+  if (use_indices_)
+    sub_indices_filter_.unsubscribe ();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -554,10 +591,6 @@ pcl_ros::SACSegmentationFromNormals::input_normals_indices_callback (
       )
 {
   boost::mutex::scoped_lock lock (mutex_);
-
-  // No subscribers, no work
-  if (pub_indices_.getNumSubscribers () <= 0 && pub_model_.getNumSubscribers () <= 0)
-    return;
 
   PointIndices inliers;
   ModelCoefficients model;
@@ -658,6 +691,6 @@ pcl_ros::SACSegmentationFromNormals::input_normals_indices_callback (
 
 typedef pcl_ros::SACSegmentation SACSegmentation;
 typedef pcl_ros::SACSegmentationFromNormals SACSegmentationFromNormals;
-PLUGINLIB_DECLARE_CLASS (pcl, SACSegmentation, SACSegmentation, nodelet::Nodelet);
-PLUGINLIB_DECLARE_CLASS (pcl, SACSegmentationFromNormals, SACSegmentationFromNormals, nodelet::Nodelet);
+PLUGINLIB_EXPORT_CLASS(SACSegmentation, nodelet::Nodelet)
+PLUGINLIB_EXPORT_CLASS(SACSegmentationFromNormals, nodelet::Nodelet)
 
