@@ -5,14 +5,17 @@ project(pcl_ros)
 find_package(cmake_modules REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system filesystem thread)
 find_package(Eigen3 REQUIRED)
-find_package(PCL REQUIRED)
-# For debian: https://github.com/ros-perception/perception_pcl/issues/139
-find_package(Qt5Widgets QUIET)
+find_package(PCL REQUIRED COMPONENTS core features filters io segmentation surface)
 
 if(NOT "${PCL_LIBRARIES}" STREQUAL "")
-  list(REMOVE_ITEM PCL_LIBRARIES "vtkproj4")
-  # FIXME: this causes duplicates and not found error in ubuntu:zesty
-  list(REMOVE_ITEM PCL_LIBRARIES "/usr/lib/libmpi.so")
+  # For debian: https://github.com/ros-perception/perception_pcl/issues/139
+  list(REMOVE_ITEM PCL_LIBRARIES
+    "vtkGUISupportQt"
+    "vtkGUISupportQtOpenGL"
+    "vtkGUISupportQtSQL"
+    "vtkGUISupportQtWebkit"
+    "vtkViewsQt"
+    "vtkRenderingQt")
 endif()
 
 ## Find catkin packages
@@ -70,6 +73,7 @@ catkin_package(
     dynamic_reconfigure
     message_filters
     nodelet
+    nodelet_topic_tools
     pcl_conversions
     pcl_msgs
     rosbag
@@ -177,6 +181,14 @@ target_link_libraries(convert_pcd_to_image ${Boost_LIBRARIES} ${catkin_LIBRARIES
 add_executable(convert_pointcloud_to_image tools/convert_pointcloud_to_image.cpp)
 target_link_libraries(convert_pointcloud_to_image ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${Eigen3_LIBRARIES} ${PCL_LIBRARIES})
 
+## Downloads
+
+catkin_download(table_scene_lms400.pcd http://download.ros.org/data/pcl/table_scene_lms400.pcd
+  DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/samples/data
+  MD5 546b5b4822fb1de21b0cf83d41ad6683
+)
+add_custom_target(download ALL DEPENDS download_extra_data)
+
 #############
 ## Testing ##
 #############
@@ -185,6 +197,11 @@ if(CATKIN_ENABLE_TESTING)
   find_package(rostest REQUIRED)
   add_rostest_gtest(test_tf_message_filter_pcl tests/test_tf_message_filter_pcl.launch src/test/test_tf_message_filter_pcl.cpp)
   target_link_libraries(test_tf_message_filter_pcl ${catkin_LIBRARIES} ${GTEST_LIBRARIES})
+  add_rostest(samples/pcl_ros/features/sample_normal_3d.launch ARGS gui:=false)
+  add_rostest(samples/pcl_ros/filters/sample_statistical_outlier_removal.launch ARGS gui:=false)
+  add_rostest(samples/pcl_ros/filters/sample_voxel_grid.launch ARGS gui:=false)
+  add_rostest(samples/pcl_ros/segmentation/sample_extract_clusters.launch ARGS gui:=false)
+  add_rostest(samples/pcl_ros/surface/sample_convex_hull.launch ARGS gui:=false)
 endif(CATKIN_ENABLE_TESTING)
 
 
@@ -209,4 +226,5 @@ install(
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 )
 
-install(DIRECTORY plugins DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+install(DIRECTORY plugins samples
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
