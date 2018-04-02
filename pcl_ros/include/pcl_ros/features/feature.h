@@ -165,10 +165,6 @@ namespace pcl_ros
       /** \brief Nodelet initialization routine. */
       virtual void onInit ();
 
-      /** \brief NodeletLazy connection routine. */
-      virtual void subscribe ();
-      virtual void unsubscribe ();
-
       /** \brief Input point cloud callback. Used when \a use_indices and \a use_surface are set.
         * \param cloud the pointer to the input point cloud
         * \param cloud_surface the pointer to the surface point cloud
@@ -227,10 +223,6 @@ namespace pcl_ros
 
       /** \brief Nodelet initialization routine. */
       virtual void onInit ();
-
-      /** \brief NodeletLazy connection routine. */
-      virtual void subscribe ();
-      virtual void unsubscribe ();
 
       /** \brief Input point cloud callback. Used when \a use_indices and \a use_surface are set.
         * \param cloud the pointer to the input point cloud

@@ -97,10 +97,6 @@ namespace pcl_ros
       virtual void 
       onInit ();
 
-      /** \brief NodeletLazy connection routine. */
-      void subscribe ();
-      void unsubscribe ();
-
       /** \brief PointCloud2 + Indices + Model data callback. */
       void 
       input_indices_model_callback (const PointCloud2::ConstPtr &cloud, 

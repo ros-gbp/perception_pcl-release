@@ -40,18 +40,12 @@
 
 #include <sensor_msgs/PointCloud2.h>
 
-#include <tf2_ros/buffer.h>
-#include <tf2_ros/transform_listener.h>
-#include <tf2_eigen/tf2_eigen.h>
-
 // PCL includes
 #include <pcl/io/io.h>
 #include <pcl/io/pcd_io.h>
 #include <pcl/point_types.h>
 
 #include <pcl_conversions/pcl_conversions.h>
-
-#include <Eigen/Geometry>
 
 using namespace std;
 
@@ -71,9 +65,6 @@ class PointCloudToPCD
     std::string prefix_;
     bool binary_;
     bool compressed_;
-    std::string fixed_frame_;
-    tf2_ros::Buffer tf_buffer_;
-    tf2_ros::TransformListener tf_listener_;
 
   public:
     string cloud_topic_;
@@ -93,21 +84,6 @@ class PointCloudToPCD
                 cloud->header.frame_id.c_str (),
                 pcl::getFieldsList (*cloud).c_str ());
 
-      Eigen::Vector4f v = Eigen::Vector4f::Zero ();
-      Eigen::Quaternionf q = Eigen::Quaternionf::Identity ();
-      if (!fixed_frame_.empty ()) {
-        if (!tf_buffer_.canTransform (fixed_frame_, cloud->header.frame_id, pcl_conversions::fromPCL (cloud->header.stamp), ros::Duration (3.0))) {
-          ROS_WARN("Could not get transform!");
-          return;
-        }
-
-        Eigen::Affine3d transform;
-        transform = tf2::transformToEigen (tf_buffer_.lookupTransform (fixed_frame_, cloud->header.frame_id,  pcl_conversions::fromPCL (cloud->header.stamp)));
-        v = Eigen::Vector4f::Zero ();
-        v.head<3> () = transform.translation ().cast<float> ();
-        q = transform.rotation ().cast<float> ();
-      }
-
       std::stringstream ss;
       ss << prefix_ << cloud->header.stamp << ".pcd";
       ROS_INFO ("Data saved to %s", ss.str ().c_str ());
@@ -117,22 +93,25 @@ class PointCloudToPCD
 	{
 	  if(compressed_)
 	    {
-	      writer.writeBinaryCompressed (ss.str (), *cloud, v, q);
+	      writer.writeBinaryCompressed (ss.str (), *cloud, Eigen::Vector4f::Zero (),
+					    Eigen::Quaternionf::Identity ());
 	    }
 	  else
 	    {
-	      writer.writeBinary (ss.str (), *cloud, v, q);
+	      writer.writeBinary (ss.str (), *cloud, Eigen::Vector4f::Zero (),
+				  Eigen::Quaternionf::Identity ());
 	    }
 	}
       else
 	{
-	  writer.writeASCII (ss.str (), *cloud, v, q, 8);
+	  writer.writeASCII (ss.str (), *cloud, Eigen::Vector4f::Zero (),
+			     Eigen::Quaternionf::Identity (), 8);
 	}
 
     }
 
     ////////////////////////////////////////////////////////////////////////////////
-    PointCloudToPCD () : binary_(false), compressed_(false), tf_listener_(tf_buffer_)
+    PointCloudToPCD () : binary_(false), compressed_(false)
     {
       // Check if a prefix parameter is defined for output file names.
       ros::NodeHandle priv_nh("~");
@@ -146,7 +125,6 @@ class PointCloudToPCD
                            << prefix_);
         }
 
-      priv_nh.getParam ("fixed_frame", fixed_frame_);
       priv_nh.getParam ("binary", binary_);
       priv_nh.getParam ("compressed", compressed_);
       if(binary_)
@@ -162,7 +140,7 @@ class PointCloudToPCD
 	}
       else
 	{
-	  ROS_INFO_STREAM ("Saving as binary PCD");
+	  ROS_INFO_STREAM ("Saving as ASCII PCD");
 	}
 
       cloud_topic_ = "input";

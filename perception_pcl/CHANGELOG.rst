@@ -2,18 +2,11 @@
 Changelog for package perception_pcl
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.4.2 (2018-04-03)
-------------------
-* Add myname as a maintainer
-* Contributors: Kentaro Wada
-
-1.4.0 (2016-04-22)
+1.2.8 (2018-04-03)
 ------------------
 
-1.3.0 (2015-06-22)
+1.2.7 (2015-06-08)
 ------------------
-* Remove pointcloud_to_laserscan package
-* Contributors: Paul Bovbel
 
 1.2.6 (2015-02-04)
 ------------------

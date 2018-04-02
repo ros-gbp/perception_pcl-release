@@ -40,7 +40,7 @@
 
 // ROS includes
 #include <tf/transform_listener.h>
-#include <nodelet_topic_tools/nodelet_lazy.h>
+#include <nodelet/nodelet.h>
 #include <message_filters/subscriber.h>
 #include <message_filters/synchronizer.h>
 #include <message_filters/pass_through.h>
@@ -57,7 +57,7 @@ namespace pcl_ros
     * PointCloud output message.
     * \author Radu Bogdan Rusu
     */
-  class PointCloudConcatenateDataSynchronizer: public nodelet_topic_tools::NodeletLazy
+  class PointCloudConcatenateDataSynchronizer: public nodelet::Nodelet
   {
     public:
       typedef sensor_msgs::PointCloud2 PointCloud2;
@@ -76,10 +76,11 @@ namespace pcl_ros
       virtual ~PointCloudConcatenateDataSynchronizer () {};
 
       void onInit ();
-      void subscribe ();
-      void unsubscribe ();
 
     private:
+      /** \brief ROS local node handle. */
+      ros::NodeHandle private_nh_;
+      
       /** \brief The output PointCloud publisher. */
       ros::Publisher pub_output_;
 
@@ -94,9 +95,6 @@ namespace pcl_ros
 
       /** \brief Output TF frame the concatenated points should be transformed to. */
       std::string output_frame_;
-
-      /** \brief Input point cloud topics. */
-      XmlRpc::XmlRpcValue input_topics_;
 
       /** \brief TF listener object. */
       tf::TransformListener tf_;

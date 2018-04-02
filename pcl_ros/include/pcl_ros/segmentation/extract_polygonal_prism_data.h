@@ -97,12 +97,8 @@ namespace pcl_ros
         nf_.add (boost::make_shared<PointIndices> (cloud));
       }
 
-      /** \brief Nodelet initialization routine. */
+       /** \brief Nodelet initialization routine. */
       void onInit ();
-
-      /** \brief LazyNodelet connection routine. */
-      void subscribe ();
-      void unsubscribe ();
 
       /** \brief Dynamic reconfigure callback
         * \param config the config object

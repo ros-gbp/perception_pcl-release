@@ -1,7 +1,7 @@
 /*
  * Software License Agreement (BSD License)
  *
- *  Copyright (c) 2015, Ryohei Ueda, JSK Lab
+ *  Copyright (c) 2010-2012, Willow Garage, Inc.
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -14,7 +14,7 @@
  *     copyright notice, this list of conditions and the following
  *     disclaimer in the documentation and/or other materials provided
  *     with the distribution.
- *   * Neither the name of JSK Lab. nor the names of its
+ *   * Neither the name of Willow Garage, Inc. nor the names of its
  *     contributors may be used to endorse or promote products derived
  *     from this software without specific prior written permission.
  *
@@ -34,47 +34,32 @@
  *
  */
 
-#ifndef PCL_ROS_SHOT_H_
-#define PCL_ROS_SHOT_H_
+/*
+ * Author: Paul Bovbel
+ */
 
-#include <pcl/features/shot.h>
-#include "pcl_ros/features/pfh.h"
+#include <ros/ros.h>
+#include <nodelet/loader.h>
 
-namespace pcl_ros
-{
-  /** \brief @b SHOTEstimation estimates SHOT descriptor.
-    *
-    */
-  class SHOTEstimation : public FeatureFromNormals
-  {
-    private:
-      pcl::SHOTEstimation<pcl::PointXYZ, pcl::Normal, pcl::SHOT352> impl_;
+int main(int argc, char **argv){
+  ros::init(argc, argv, "pointcloud_to_laserscan_node");
+  ros::NodeHandle private_nh("~");
+  int concurrency_level;
+  private_nh.param<int>("concurrency_level", concurrency_level, 0);
 
-      typedef pcl::PointCloud<pcl::SHOT352> PointCloudOut;
+  nodelet::Loader nodelet;
+  nodelet::M_string remap(ros::names::getRemappings());
+  nodelet::V_string nargv;
+  std::string nodelet_name = ros::this_node::getName();
+  nodelet.load(nodelet_name, "pointcloud_to_laserscan/pointcloud_to_laserscan_nodelet", remap, nargv);
 
-      /** \brief Child initialization routine. Internal method. */
-      inline bool 
-      childInit (ros::NodeHandle &nh)
-      {
-        // Create the output publisher
-        pub_output_ = nh.advertise<PointCloudOut> ("output", max_queue_size_);
-        return (true);
-      }
+  boost::shared_ptr<ros::MultiThreadedSpinner> spinner;
+  if(concurrency_level) {
+    spinner.reset(new ros::MultiThreadedSpinner(concurrency_level));
+  }else{
+    spinner.reset(new ros::MultiThreadedSpinner());
+  }
+  spinner->spin();
+  return 0;
 
-      /** \brief Publish an empty point cloud of the feature output type. */
-      void emptyPublish (const PointCloudInConstPtr &cloud);
-
-      /** \brief Compute the feature and publish it. */
-      void computePublish (const PointCloudInConstPtr &cloud,
-                           const PointCloudNConstPtr &normals,
-                           const PointCloudInConstPtr &surface,
-                           const IndicesPtr &indices);
-
-    public:
-      EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-  };
 }
-
-#endif  //#ifndef PCL_SHOT_H_
-
-

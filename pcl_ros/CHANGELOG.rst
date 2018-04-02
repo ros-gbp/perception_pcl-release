@@ -2,102 +2,31 @@
 Changelog for package pcl_ros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.4.2 (2018-04-03)
+1.2.8 (2018-04-03)
 ------------------
 * update to use non deprecated pluginlib macro
-* Fix config path of sample_voxel_grid.launch
-* remove hack now that upstream pcl has been rebuilt
-* Looser hzerror in test for extract_clusters to make it pass on Travis
-* Add sample & test for surface/convex_hull
-* Add sample & test for segmentation/extract_clusters.cpp
-* Add sample & test for io/concatenate_data.cpp
-* Add sample & test for features/normal_3d.cpp
-* Organize samples of pcl_ros/features
-* Add test arg to avoid duplicated testing
-* LazyNodelet for features/*
-* LazyNodelet for filters/ProjectInliers
-* Refactor io/PCDReader and io/PCDWriter as child of PCLNodelet
-* LazyNodelet for io/PointCloudConcatenateFieldsSynchronizer
-* LazyNodelet for io/PointCloudConcatenateDataSynchronizer
-* LazyNodelet for segmentation/SegmentDifferences
-* LazyNodelet for segmentation/SACSegmentationFromNormals
-* LazyNodelet for segmentation/SACSegmentation
-* LazyNodelet for segmentation/ExtractPolygonalPrismData
-* LazyNodelet for segmentation/EuclideanClusterExtraction
-* LazyNodelet for surface/MovingLeastSquares
-* LazyNodelet for surface/ConvexHull2D
-* Add missing COMPONENTS of PCL
-* Inherit NodeletLazy for pipeline with less cpu load
-* Set leaf_size 0.02
-* Install samples
-* Add sample and test for pcl/StatisticalOutlierRemoval
-  Conflicts:
-  pcl_ros/CMakeLists.txt
-* Add sample and test for pcl/VoxelGrid
-  Conflicts:
-  pcl_ros/CMakeLists.txt
-* no need to remove duplicates
-* spourious line change
-* remove now unnecessary build_depend on qtbase5
-* exclude PCL IO libraries exporting Qt flag
-* find only PCL components used instead of all PCL
-* Remove dependency on vtk/libproj-dev (`#145 <https://github.com/ros-perception/perception_pcl/issues/145>`_)
-  * Remove dependency on vtk/libproj-dev
-  These dependencies were introduced in `#124 <https://github.com/ros-perception/perception_pcl/issues/124>`_ to temporarily fix
-  missing / wrong dependencies in upstream vtk. This hack is no longer
-  necessary, since fixed vtk packages have been uploaded to
-  packages.ros.org (see `#124 <https://github.com/ros-perception/perception_pcl/issues/124>`_ and `ros-infrastructure/reprepro-updater#32 <https://github.com/ros-infrastructure/reprepro-updater/issues/32>`_).
-  * Remove vtk hack from CMakeLists.txt
-* Add dependency on qtbase5-dev for find_package(Qt5Widgets)
-  See https://github.com/ros-perception/perception_pcl/pull/117#issuecomment-298158272 for detail.
-* Find Qt5Widgets to fix -lQt5::Widgets error
-* Add myname as a maintainer
-* Fix lib name duplication error
-* Detect automatically the version of PCL
-* Merge pull request `#134 <https://github.com/ros-perception/perception_pcl/issues/134>`_ from ros-perception/install_plugins_xml
-  Install xml files declaring nodelets
 * Install xml files declaring nodelets
   https://github.com/ros-perception/perception_pcl/commit/f81cded18b4f6d398b460a36c953fe6620a02bd6#commitcomment-21871201
   @scottnothing Thanks!
-* Merge pull request `#132 <https://github.com/ros-perception/perception_pcl/issues/132>`_ from wkentaro/fix_syntax_nodelet_manifest
-  Fix syntax of nodelet manifest file
 * Fix syntax of nodelet manifest file
   By splitting files for each library.
   Close `#131 <https://github.com/ros-perception/perception_pcl/issues/131>`_
-* Contributors: Kentaro Wada, Mikael Arguedas, Paul Bovbel
+* Merge pull request `#114 <https://github.com/ros-perception/perception_pcl/issues/114>`_ from dpiet/indigo-devel
+  Fixing typo in a ROS_INFO statement
+* Fixing typo in a ROS_INFO statement
+  Statement was incorrectly informing user that PCD would be saved as binary instead of ASCII.
+* Merge cleanup broken library links
+* Contributors: Kentaro Wada, Mikael Arguedas, Paul Bovbel, dpiet, v4hn
 
-1.4.0 (2016-04-22)
+1.2.7 (2015-06-08)
 ------------------
-* Fixup libproj-dev rosdep
-* Add build depend on libproj, since it's not provided by vtk right now
-* manually remove dependency on vtkproj from PCL_LIBRARIES
-* Remove python-vtk for kinetic-devel, see issue `#44 <https://github.com/ros-perception/perception_pcl/issues/44>`_
-* Contributors: Jackie Kay, Paul Bovbel
-
-1.3.0 (2015-06-22)
-------------------
-* cleanup broken library links
-  All removed library names are included in ${PCL_LIBRARIES}.
-  However, the plain library names broke catkin's overlay mechanism:
-  Where ${PCL_LIBRARIES} could point to a local installation of the PCL,
-  e.g. pcd_ros_segmentation might still link to the system-wide installed version
-  of pcl_segmentation.
-* Fixed test for jade-devel. Progress on `#92 <https://github.com/ros-perception/perception_pcl/issues/92>`_
-* commented out test_tf_message_filter_pcl
-  Until `ros/geometry#80 <https://github.com/ros/geometry/issues/80>`_ has been merged the test will fail.
-* fixed indentation and author
-* Adds a test for tf message filters with pcl pointclouds
-* specialized HasHeader, TimeStamp, FrameId
-  - HasHeader now returns false
-  - TimeStamp and FrameId specialed for pcl::PointCloud<T> for any point type T
-  These changes allow to use pcl::PointCloud with tf::MessageFilter
 * Sync pcl_nodelets.xml from hydro to indigo
   Fixes to pass catkin lint -W1
 * Fixes `#87 <https://github.com/ros-perception/perception_pcl/issues/87>`_ for Indigo
 * Fixes `#85 <https://github.com/ros-perception/perception_pcl/issues/85>`_ for Indigo
 * Fixes `#77 <https://github.com/ros-perception/perception_pcl/issues/77>`_ and `#80 <https://github.com/ros-perception/perception_pcl/issues/80>`_ for indigo
 * Added option to save pointclouds in binary and binary compressed format
-* Contributors: Brice Rebsamen, Lucid One, Mitchell Wills, v4hn
+* Contributors: Lucid One, Mitchell Wills
 
 1.2.6 (2015-02-04)
 ------------------
