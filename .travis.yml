@@ -6,9 +6,10 @@ services:
 cache: ccache
 env:
   global:
-    - ROS_DISTRO=indigo
+    - ROS_DISTRO=kinetic
   matrix:
-    - DOCKER_IMAGE=ubuntu:trusty
+    - DOCKER_IMAGE=debian:jessie
+    - DOCKER_IMAGE=ubuntu:xenial
 # Install system dependencies, namely ROS.
 before_install:
   # Define some config vars.
