@@ -5,7 +5,7 @@ project(pcl_ros)
 find_package(cmake_modules REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system filesystem thread)
 find_package(Eigen3 REQUIRED)
-find_package(PCL REQUIRED)
+find_package(PCL REQUIRED COMPONENTS core features filters io segmentation surface)
 
 if(NOT "${PCL_LIBRARIES}" STREQUAL "")
   # For debian: https://github.com/ros-perception/perception_pcl/issues/139
@@ -21,7 +21,7 @@ endif()
 ## Find catkin packages
 find_package(catkin REQUIRED COMPONENTS
   dynamic_reconfigure
-  genmsg
+  message_filters
   nodelet
   nodelet_topic_tools
   pcl_conversions
@@ -90,7 +90,7 @@ catkin_package(
 ## Declare the pcl_ros_tf library
 add_library(pcl_ros_tf src/transforms.cpp)
 target_link_libraries(pcl_ros_tf ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${Eigen3_LIBRARIES} ${PCL_LIBRARIES})
-add_dependencies(pcl_ros_tf pcl_ros_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+add_dependencies(pcl_ros_tf ${catkin_EXPORTED_TARGETS})
 
 ## Nodelets
 

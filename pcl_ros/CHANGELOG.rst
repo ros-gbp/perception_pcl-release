@@ -2,13 +2,7 @@
 Changelog for package pcl_ros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.4.3 (2018-04-08)
-------------------
-* Provide all PCL libraries
-  Related to https://github.com/ros-perception/perception_pcl/pull/184
-* Contributors: Kentaro Wada
-
-1.4.2 (2018-04-03)
+1.5.4 (2018-03-31)
 ------------------
 * update to use non deprecated pluginlib macro
 * Fix config path of sample_voxel_grid.launch
@@ -54,23 +48,31 @@ Changelog for package pcl_ros
   necessary, since fixed vtk packages have been uploaded to
   packages.ros.org (see `#124 <https://github.com/ros-perception/perception_pcl/issues/124>`_ and `ros-infrastructure/reprepro-updater#32 <https://github.com/ros-infrastructure/reprepro-updater/issues/32>`_).
   * Remove vtk hack from CMakeLists.txt
+* Contributors: Kentaro Wada, Mikael Arguedas
+
+1.5.3 (2017-05-03)
+------------------
 * Add dependency on qtbase5-dev for find_package(Qt5Widgets)
   See https://github.com/ros-perception/perception_pcl/pull/117#issuecomment-298158272 for detail.
+* Contributors: Kentaro Wada
+
+1.5.2 (2017-04-29)
+------------------
 * Find Qt5Widgets to fix -lQt5::Widgets error
-* Add myname as a maintainer
-* Fix lib name duplication error
-* Detect automatically the version of PCL
-* Merge pull request `#134 <https://github.com/ros-perception/perception_pcl/issues/134>`_ from ros-perception/install_plugins_xml
-  Install xml files declaring nodelets
+* Contributors: Kentaro Wada
+
+1.5.1 (2017-04-26)
+------------------
+* Add my name as a maintainer
+* Contributors: Kentaro Wada
+
+1.5.0 (2017-04-25)
+------------------
+* Fix lib name duplication error in ubunt:zesty
+* Detect automatically the version of PCL in cmake
 * Install xml files declaring nodelets
-  https://github.com/ros-perception/perception_pcl/commit/f81cded18b4f6d398b460a36c953fe6620a02bd6#commitcomment-21871201
-  @scottnothing Thanks!
-* Merge pull request `#132 <https://github.com/ros-perception/perception_pcl/issues/132>`_ from wkentaro/fix_syntax_nodelet_manifest
-  Fix syntax of nodelet manifest file
-* Fix syntax of nodelet manifest file
-  By splitting files for each library.
-  Close `#131 <https://github.com/ros-perception/perception_pcl/issues/131>`_
-* Contributors: Kentaro Wada, Mikael Arguedas, Paul Bovbel
+* Fix syntax of nodelet manifest file by splitting files for each library.
+* Contributors: Kentaro Wada
 
 1.4.0 (2016-04-22)
 ------------------
