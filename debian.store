@@ -1,1 +1,1 @@
-{"base": "bb6f346", "parent": "debian/melodic/pcl_ros", "previous": "4fb0267", "trim": "", "trimbase": ""}
+{"trim": "", "base": "ea26c84", "trimbase": "", "parent": "debian/melodic/pcl_ros", "previous": "2c7be46"}
