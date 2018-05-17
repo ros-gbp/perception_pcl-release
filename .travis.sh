@@ -22,12 +22,6 @@ function travis_time_end {
     set -x
 }
 
-# Default configuration
-test "$NOT_TEST_INSTALL" = "" && export NOT_TEST_INSTALL=false
-
-# Mainly for https://github.com/ros-perception/perception_pcl/pull/197#issuecomment-386056906
-export DEBIAN_FRONTEND=noninteractive
-
 apt-get update -qq && apt-get install -qq -y -q wget sudo lsb-release gnupg # for docker
 
 # Setup ccache
@@ -42,7 +36,7 @@ sudo sh -c "echo \"deb http://packages.ros.org/ros-shadow-fixed/ubuntu `lsb_rele
 wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
 sudo apt-get update -qq
 # Install ROS
-sudo -E apt-get install -qq -y python-catkin-pkg python-catkin-tools python-rosdep python-wstool ros-$ROS_DISTRO-catkin
+sudo apt-get install -qq -y python-catkin-pkg python-catkin-tools python-rosdep python-wstool ros-$ROS_DISTRO-catkin
 source /opt/ros/$ROS_DISTRO/setup.bash
 # Setup for rosdep
 sudo rosdep init
@@ -81,9 +75,7 @@ cd ~/catkin_ws
 catkin build -p1 -j1
 catkin run_tests -p1 -j1
 catkin_test_results --all build
-if [ "$NOT_TEST_INSTALL" != "true" ]; then
-  catkin clean -b --yes
-  catkin config --install
-  catkin build -p1 -j1
-fi
+catkin clean -b --yes
+catkin config --install
+catkin build -p1 -j1
 travis_time_end
