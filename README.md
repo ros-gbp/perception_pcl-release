@@ -1,3 +1,28 @@
+## perception_pcl (kinetic) - 1.4.4-0
+
+The packages in the `perception_pcl` repository were released into the `kinetic` distro by running `/usr/local/bin/bloom-release -r kinetic -t kinetic perception_pcl` on `Thu, 17 May 2018 06:04:22 -0000`
+
+These packages were released:
+- `pcl_ros`
+- `perception_pcl`
+
+Version of package(s) in repository `perception_pcl`:
+
+- upstream repository: https://github.com/ros-perception/perception_pcl.git
+- release repository: https://github.com/ros-gbp/perception_pcl-release.git
+- rosdistro version: `1.4.3-0`
+- old version: `1.4.3-0`
+- new version: `1.4.4-0`
+
+Versions of tools used:
+
+- bloom version: `0.6.4`
+- catkin_pkg version: `0.4.1`
+- rosdep version: `0.12.2`
+- rosdistro version: `0.6.8`
+- vcstools version: `0.1.40`
+
+
 ## perception_pcl (melodic) - 1.6.1-0
 
 The packages in the `perception_pcl` repository were released into the `melodic` distro by running `/usr/local/bin/bloom-release -r melodic -t melodic perception_pcl` on `Tue, 08 May 2018 09:58:16 -0000`
