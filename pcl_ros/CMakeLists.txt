@@ -5,7 +5,7 @@ project(pcl_ros)
 find_package(cmake_modules REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system filesystem thread)
 find_package(Eigen3 REQUIRED)
-find_package(PCL REQUIRED)
+find_package(PCL REQUIRED COMPONENTS core features filters io segmentation surface)
 
 if(NOT "${PCL_LIBRARIES}" STREQUAL "")
   # For debian: https://github.com/ros-perception/perception_pcl/issues/139
@@ -18,25 +18,25 @@ if(NOT "${PCL_LIBRARIES}" STREQUAL "")
     "vtkRenderingQt")
 endif()
 
-# Remove include dirs which does not exist in some platforms.
-# https://github.com/ros-perception/perception_pcl/issues/172
-# https://github.com/ros-perception/perception_pcl/issues/206
+# There is a bug in the Ubuntu Artful (17.10) version of the VTK package,
+# where it includes /usr/include/*-linux-gnu/freetype2 in the include
+# directories (which doesn't exist).  This filters down to the PCL_INCLUDE_DIRS,
+# and causes downstream projects trying to use these libraries to fail to
+# configure properly.  Here we remove those bogus entries so that downstream
+# consumers of this package succeed.
 if(NOT "${PCL_INCLUDE_DIRS}" STREQUAL "")
   foreach(item ${PCL_INCLUDE_DIRS})
-    set(patterns "/usr/include/.*-linux-gnu/freetype2" "/usr/include/hdf5/openmpi")
-    foreach(pattern ${patterns})
-      string(REGEX MATCH ${pattern} match ${item})
-      if(match)
-        list(REMOVE_ITEM PCL_INCLUDE_DIRS ${match})
-      endif()
-    endforeach()
+    string(REGEX MATCH "/usr/include/.*-linux-gnu/freetype2" item ${item})
+    if(item)
+      list(REMOVE_ITEM PCL_INCLUDE_DIRS ${item})
+    endif()
   endforeach()
 endif()
 
 ## Find catkin packages
 find_package(catkin REQUIRED COMPONENTS
   dynamic_reconfigure
-  genmsg
+  message_filters
   nodelet
   nodelet_topic_tools
   pcl_conversions
@@ -104,7 +104,7 @@ catkin_package(
 
 ## Declare the pcl_ros_tf library
 add_library(pcl_ros_tf src/transforms.cpp)
-target_link_libraries(pcl_ros_tf ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${EIGEN3_LIBRARIES} ${PCL_LIBRARIES})
+target_link_libraries(pcl_ros_tf ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${PCL_LIBRARIES})
 add_dependencies(pcl_ros_tf ${catkin_EXPORTED_TARGETS})
 
 ## Nodelets
@@ -117,7 +117,7 @@ add_library(pcl_ros_io
   src/pcl_ros/io/io.cpp
   src/pcl_ros/io/pcd_io.cpp
 )
-target_link_libraries(pcl_ros_io pcl_ros_tf ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${EIGEN3_LIBRARIES} ${PCL_LIBRARIES})
+target_link_libraries(pcl_ros_io pcl_ros_tf ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${PCL_LIBRARIES})
 class_loader_hide_library_symbols(pcl_ros_io)
 
 ## Declare the pcl_ros_features library
@@ -136,7 +136,7 @@ add_library(pcl_ros_features
   src/pcl_ros/features/principal_curvatures.cpp
   src/pcl_ros/features/vfh.cpp
 )
-target_link_libraries (pcl_ros_features ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${EIGEN3_LIBRARIES} ${PCL_LIBRARIES})
+target_link_libraries (pcl_ros_features ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${PCL_LIBRARIES})
 add_dependencies(pcl_ros_features ${PROJECT_NAME}_gencfg)
 class_loader_hide_library_symbols(pcl_ros_features)
 
@@ -152,7 +152,7 @@ add_library(pcl_ros_filters
   src/pcl_ros/filters/voxel_grid.cpp
   src/pcl_ros/filters/crop_box.cpp
 )
-target_link_libraries(pcl_ros_filters pcl_ros_tf ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${EIGEN3_LIBRARIES} ${PCL_LIBRARIES})
+target_link_libraries(pcl_ros_filters pcl_ros_tf ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${PCL_LIBRARIES})
 add_dependencies(pcl_ros_filters ${PROJECT_NAME}_gencfg)
 class_loader_hide_library_symbols(pcl_ros_filters)
 
@@ -164,7 +164,7 @@ add_library (pcl_ros_segmentation
   src/pcl_ros/segmentation/segment_differences.cpp
   src/pcl_ros/segmentation/segmentation.cpp
 )
-target_link_libraries(pcl_ros_segmentation pcl_ros_tf ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${EIGEN3_LIBRARIES} ${PCL_LIBRARIES})
+target_link_libraries(pcl_ros_segmentation pcl_ros_tf ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${PCL_LIBRARIES})
 add_dependencies(pcl_ros_segmentation ${PROJECT_NAME}_gencfg)
 class_loader_hide_library_symbols(pcl_ros_segmentation)
 
@@ -175,26 +175,26 @@ add_library (pcl_ros_surface
   src/pcl_ros/surface/convex_hull.cpp
   src/pcl_ros/surface/moving_least_squares.cpp
 )
-target_link_libraries(pcl_ros_surface ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${EIGEN3_LIBRARIES} ${PCL_LIBRARIES})
+target_link_libraries(pcl_ros_surface ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${PCL_LIBRARIES})
 add_dependencies(pcl_ros_surface ${PROJECT_NAME}_gencfg)
 class_loader_hide_library_symbols(pcl_ros_surface)
 
 ## Tools
 
 add_executable(pcd_to_pointcloud tools/pcd_to_pointcloud.cpp)
-target_link_libraries(pcd_to_pointcloud ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${EIGEN3_LIBRARIES} ${PCL_LIBRARIES})
+target_link_libraries(pcd_to_pointcloud ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${PCL_LIBRARIES})
 
 add_executable(pointcloud_to_pcd tools/pointcloud_to_pcd.cpp)
-target_link_libraries(pointcloud_to_pcd ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${EIGEN3_LIBRARY_DIRS} ${PCL_LIBRARIES})
+target_link_libraries(pointcloud_to_pcd ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${PCL_LIBRARIES})
 
 add_executable(bag_to_pcd tools/bag_to_pcd.cpp)
-target_link_libraries(bag_to_pcd pcl_ros_tf ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${EIGEN3_LIBRARY_DIRS} ${PCL_LIBRARIES})
+target_link_libraries(bag_to_pcd pcl_ros_tf ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${PCL_LIBRARIES})
 
 add_executable(convert_pcd_to_image tools/convert_pcd_to_image.cpp)
-target_link_libraries(convert_pcd_to_image ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${EIGEN3_LIBRARIES} ${PCL_LIBRARIES})
+target_link_libraries(convert_pcd_to_image ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${PCL_LIBRARIES})
 
 add_executable(convert_pointcloud_to_image tools/convert_pointcloud_to_image.cpp)
-target_link_libraries(convert_pointcloud_to_image ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${EIGEN3_LIBRARIES} ${PCL_LIBRARIES})
+target_link_libraries(convert_pointcloud_to_image ${Boost_LIBRARIES} ${catkin_LIBRARIES} ${PCL_LIBRARIES})
 
 ## Downloads
 
