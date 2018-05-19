@@ -2,6 +2,9 @@
 Changelog for package pcl_conversions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.6.2 (2018-05-20)
+------------------
+
 1.6.1 (2018-05-08)
 ------------------
 * Add 1.6.0 section to CHANGELOG.rst
