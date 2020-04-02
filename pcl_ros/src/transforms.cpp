@@ -36,8 +36,6 @@
 
 #include <sensor_msgs/PointCloud2.h>
 #include <tf2_eigen/tf2_eigen.h>
-#include <pcl/common/io.h>
-#include <pcl/point_types.h>
 #include <pcl_conversions/pcl_conversions.h>
 #include "pcl_ros/transforms.h"
 #include "pcl_ros/impl/transforms.hpp"
@@ -201,7 +199,7 @@ transformPointCloud (const Eigen::Matrix4f &transform, const sensor_msgs::PointC
     Eigen::Vector4f pt_out;
     
     bool max_range_point = false;
-    int distance_ptr_offset = i*in.point_step + in.fields[dist_idx].offset;
+    int distance_ptr_offset = (dist_idx < 0 ? -1 : (i*in.point_step + in.fields[dist_idx].offset)); // If dist_idx is negative, it must not be used as an index
     float* distance_ptr = (dist_idx < 0 ? NULL : (float*)(&in.data[distance_ptr_offset]));
     if (!std::isfinite (pt[0]) || !std::isfinite (pt[1]) || !std::isfinite (pt[2]))
     {
