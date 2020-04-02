@@ -1,3 +1,29 @@
+## perception_pcl (melodic) - 1.7.1-1
+
+The packages in the `perception_pcl` repository were released into the `melodic` distro by running `/usr/bin/bloom-release perception_pcl --track melodic --rosdistro melodic --edit` on `Thu, 02 Apr 2020 19:49:06 -0000`
+
+These packages were released:
+- `pcl_conversions`
+- `pcl_ros`
+- `perception_pcl`
+
+Version of package(s) in repository `perception_pcl`:
+
+- upstream repository: https://github.com/ros-perception/perception_pcl.git
+- release repository: https://github.com/ros-gbp/perception_pcl-release.git
+- rosdistro version: `1.7.0-2`
+- old version: `1.7.0-2`
+- new version: `1.7.1-1`
+
+Versions of tools used:
+
+- bloom version: `0.9.3`
+- catkin_pkg version: `0.4.16`
+- rosdep version: `0.18.0`
+- rosdistro version: `0.8.0`
+- vcstools version: `0.1.42`
+
+
 ## perception_pcl (melodic) - 1.7.0-2
 
 The packages in the `perception_pcl` repository were released into the `melodic` distro by running `/usr/bin/bloom-release -r melodic -t melodic perception_pcl` on `Wed, 16 Oct 2019 16:35:23 -0000`
