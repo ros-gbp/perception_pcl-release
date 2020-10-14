@@ -141,7 +141,7 @@ pcl_ros::MovingLeastSquares::input_indices_callback (const PointCloudInConstPtr 
   {
     NODELET_ERROR ("[%s::input_indices_callback] Invalid input!", getName ().c_str ());
     output.header = cloud->header;
-    pub_output_.publish (output.makeShared ());
+    pub_output_.publish (ros_ptr(output.makeShared ()));
     return;
   }
   // If indices are given, check if they are valid
@@ -149,7 +149,7 @@ pcl_ros::MovingLeastSquares::input_indices_callback (const PointCloudInConstPtr 
   {
     NODELET_ERROR ("[%s::input_indices_callback] Invalid indices!", getName ().c_str ());
     output.header = cloud->header;
-    pub_output_.publish (output.makeShared ());
+    pub_output_.publish (ros_ptr(output.makeShared ()));
     return;
   }
 
@@ -166,7 +166,7 @@ pcl_ros::MovingLeastSquares::input_indices_callback (const PointCloudInConstPtr 
   ///
 
   // Reset the indices and surface pointers
-  impl_.setInputCloud (cloud);
+  impl_.setInputCloud (pcl_ptr(cloud));
 
   IndicesPtr indices_ptr;
   if (indices)
@@ -182,9 +182,9 @@ pcl_ros::MovingLeastSquares::input_indices_callback (const PointCloudInConstPtr 
   // Publish a Boost shared ptr const data
   // Enforce that the TF frame and the timestamp are copied
   output.header = cloud->header;
-  pub_output_.publish (output.makeShared ());
+  pub_output_.publish (ros_ptr(output.makeShared ()));
   normals->header = cloud->header;
-  pub_normals_.publish (normals);
+  pub_normals_.publish (ros_ptr(normals));
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -212,7 +212,22 @@ pcl_ros::MovingLeastSquares::config_callback (MLSConfig &config, uint32_t /*leve
   {
     use_polynomial_fit_ = config.use_polynomial_fit;
     NODELET_DEBUG ("[config_callback] Setting the use_polynomial_fit flag to: %d.", use_polynomial_fit_);
+#if PCL_VERSION_COMPARE(<, 1, 9, 0)
     impl_.setPolynomialFit (use_polynomial_fit_);
+#else
+    if (use_polynomial_fit_)
+    {
+      NODELET_WARN ("[config_callback] use_polynomial_fit is deprecated, use polynomial_order instead!");
+      if (impl_.getPolynomialOrder () < 2)
+      {
+        impl_.setPolynomialOrder (2);
+      }
+    }
+    else
+    {
+      impl_.setPolynomialOrder (0);
+    }
+#endif
   }
   if (polynomial_order_ != config.polynomial_order)
   {
