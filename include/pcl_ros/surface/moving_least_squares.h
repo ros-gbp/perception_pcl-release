@@ -42,6 +42,7 @@
 
 // PCL includes
 #include <pcl/surface/mls.h>
+#include <pcl/kdtree/kdtree.h> // for KdTree
 
 // Dynamic reconfigure
 #include <dynamic_reconfigure/server.h>
@@ -62,8 +63,8 @@ namespace pcl_ros
     typedef pcl::PointNormal NormalOut;
 
     typedef pcl::PointCloud<PointIn> PointCloudIn;
-    typedef PointCloudIn::Ptr PointCloudInPtr;
-    typedef PointCloudIn::ConstPtr PointCloudInConstPtr;
+    typedef boost::shared_ptr<PointCloudIn> PointCloudInPtr;
+    typedef boost::shared_ptr<const PointCloudIn> PointCloudInConstPtr;
     typedef pcl::PointCloud<NormalOut> NormalCloudOut;
 
     typedef pcl::KdTree<PointIn> KdTree;
