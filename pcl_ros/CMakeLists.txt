@@ -1,11 +1,39 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(pcl_ros)
 
-add_compile_options(-std=c++14)
+# CMake 3.1 added support for CMAKE_CXX_STANDARD to manage the C++ standard version
+# Use CMake C++ standard management where possible for better interoperability
+# with dependencies that export target standards and/or features
+if (${CMAKE_VERSION} VERSION_LESS "3.1")
+  add_compile_options(-std=c++14)
+else()
+  set(CMAKE_CXX_STANDARD 14)
+endif()
+
+## Find catkin packages
+find_package(catkin REQUIRED COMPONENTS
+  dynamic_reconfigure
+  geometry_msgs
+  message_filters
+  nodelet
+  nodelet_topic_tools
+  pcl_conversions
+  pcl_msgs
+  pluginlib
+  rosbag
+  rosconsole
+  roscpp
+  roslib
+  sensor_msgs
+  std_msgs
+  tf
+  tf2
+  tf2_eigen
+  tf2_ros
+)
 
 ## Find system dependencies
-find_package(PCL REQUIRED COMPONENTS core features filters io segmentation surface)
-find_package(cmake_modules REQUIRED)
+find_package(PCL REQUIRED COMPONENTS common features filters io segmentation surface)
 find_package(Boost REQUIRED COMPONENTS system filesystem thread)
 find_package(Eigen3 REQUIRED)
 
@@ -34,28 +62,6 @@ if(NOT "${PCL_INCLUDE_DIRS}" STREQUAL "")
     endif()
   endforeach()
 endif()
-
-## Find catkin packages
-find_package(catkin REQUIRED COMPONENTS
-  dynamic_reconfigure
-  geometry_msgs
-  message_filters
-  nodelet
-  nodelet_topic_tools
-  pcl_conversions
-  pcl_msgs
-  pluginlib
-  rosbag
-  rosconsole
-  roscpp
-  roslib
-  sensor_msgs
-  std_msgs
-  tf
-  tf2
-  tf2_eigen
-  tf2_ros
-)
 
 ## Add include directories
 include_directories(include)
